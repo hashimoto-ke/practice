@@ -1,0 +1,14 @@
+{
+  "name": "C# & MVC Learning Environment",
+  "image": "mcr.microsoft.com/devcontainers/dotnet:10.0",
+  "customizations": {
+    "vscode": {
+      "settings": {},
+      "extensions": [
+        "ms-dotnettools.csdevkit",
+        "vsls-contrib.codetour"
+      ]
+    }
+  },
+  "postCreateCommand": "dotnet restore"
+}

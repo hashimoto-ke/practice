@@ -1,0 +1,58 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "02: Web API Basics",
+  "steps": [
+    {
+      "file": "02_MinimalWebApi/Program.cs",
+      "selection": {
+        "start": {
+          "line": 1,
+          "character": 1
+        },
+        "end": {
+          "line": 2,
+          "character": 27
+        }
+      },
+      "description": "`WebApplication.CreateBuilder` でWebアプリケーションの設定を開始し、`Build` でサーバーインスタンス（Webブラウザからの要求を待ち受けて応答を返す、Webサーバープログラムの本体）を生成します。これが Minimal API という仕組みの基本構造です。"
+    },
+    {
+      "file": "02_MinimalWebApi/Program.cs",
+      "line": 4,
+      "description": "**ルーティング（URL と処理の紐付け）の基本**\n\nMinimal API では `app.MapGet(\"URL\", 処理)` という形式で、「このURLにアクセスが来たら、この処理を実行する」というルール（ルート）を登録します。\n\nここでは `/` （ルートURL。サーバーのトップページ）にアクセスしたときに `Welcome to Minimal Web API!` を返すルートを登録しています。"
+    },
+    {
+      "file": "02_MinimalWebApi/Program.cs",
+      "selection": {
+        "start": {
+          "line": 6,
+          "character": 1
+        },
+        "end": {
+          "line": 11,
+          "character": 4
+        }
+      },
+      "description": "`/tashizan` というURLに対するルートの登録です。\n\n`MapGet` の `Get` は HTTP の GET メソッド（ブラウザでURLを入力して普通にアクセスする方法）を意味しています。\n\n引数 `int a` と `int b` には、URLの後ろに `?a=10&b=5` のように付けるクエリパラメータの値が自動的に代入されます。"
+    },
+    {
+      "file": "02_MinimalWebApi/Program.cs",
+      "selection": {
+        "start": {
+          "line": 13,
+          "character": 1
+        },
+        "end": {
+          "line": 18,
+          "character": 4
+        }
+      },
+      "description": "TODO: `/hikizan` に対するルートのハンズオン課題です。\n現在は固定のダミー文字列を返しているので、足し算のエンドポイント（`/tashizan`）をヒントにして、引き算の結果を文字列として返すように実装してください。"
+    },
+    {
+      "file": "02_MinimalWebApi/Program.cs",
+      "line": 20,
+      "description": "実装が完了したら、ターミナルで `cd 02_MinimalWebApi` と移動し、`dotnet run` でサーバーを起動します。\n起動後、ブラウザで `/tashizan?a=10&b=5` および `/hikizan?a=10&b=5` にアクセスして動作を確認してください。\n（Codespacesを利用している場合は、右下に表示されるポップアップをクリックするだけで開けます）"
+    }
+  ]
+}

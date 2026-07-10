@@ -1,0 +1,82 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "04: MVC Form Processing",
+  "steps": [
+    {
+      "file": "03_MvcCalculator/Views/Calculator/Index.cshtml",
+      "selection": {
+        "start": {
+          "line": 9,
+          "character": 1
+        },
+        "end": {
+          "line": 19,
+          "character": 12
+        }
+      },
+      "description": "これが数値を入力して送信するための HTML フォームです。\n`action=\"/Calculator/Calculate\"` により、送信先URLを指定しています。\n`method=\"post\"` により、HTTP POST リクエスト（サーバーにデータを送信する要求）でデータが送信されます。"
+    },
+    {
+      "file": "03_MvcCalculator/Views/Calculator/Index.cshtml",
+      "line": 12,
+      "description": "数値の入力欄（`<input>`）です。\n`name=\"a\"` と指定されているため、送信されるデータは `a` という名前（キー）で送信されます。"
+    },
+    {
+      "file": "03_MvcCalculator/Controllers/CalculatorController.cs",
+      "line": 13,
+      "description": "**`[HttpGet]` と `[HttpPost]` によるルーティングの振り分け**\n\n同じコントローラー内に同じURLパスに対応するアクションが複数ある場合、`[HttpGet]` や `[HttpPost]` の属性によって、アクセス方法に応じた振り分けが行われます。\n\n- `[HttpGet]` → ブラウザのアドレス欄にURLを入力してページを開いたとき（データの取得）\n- `[HttpPost]` → HTMLフォームの送信ボタンを押してデータを送りつけたとき\n\n属性を省略した場合（例: Step 3 の `Tashizan()`）は、デフォルトで GET リクエストに対応します。"
+    },
+    {
+      "file": "03_MvcCalculator/Controllers/CalculatorController.cs",
+      "selection": {
+        "start": {
+          "line": 40,
+          "character": 1
+        },
+        "end": {
+          "line": 45,
+          "character": 50
+        }
+      },
+      "description": "フォームの `action=\"/Calculator/Calculate\"` が **POST** で送信されると、ルーティングにより `CalculatorController` の中から `[HttpPost]` が付いた `Calculate` メソッドが選ばれて実行されます。\n\nもしブラウザのURL欄に直接 `/Calculator/Calculate` と入力してアクセスした場合（GETリクエスト）、`[HttpGet]` の `Calculate` メソッドは存在しないため 405 エラー（許可されていないメソッド）になります。\n\n引数名 `int a` と `int b` は、HTML フォームの `name` 属性（`name=\"a\"`, `name=\"b\"`）と一致させることで、自動的に値が代入されます（モデルバインド）。"
+    },
+    {
+      "file": "03_MvcCalculator/Controllers/CalculatorController.cs",
+      "selection": {
+        "start": {
+          "line": 47,
+          "character": 1
+        },
+        "end": {
+          "line": 55,
+          "character": 50
+        }
+      },
+      "description": "ここでは `ViewBag` ではなく、実務で標準的に使われる **`ViewModel`（ビューに必要なデータをまとめたクラス）** を使用してデータをビューに渡しています。\n`CalculatorResultViewModel` のインスタンス（C#のメモリ上に作成された実体）を作り、その中に計算結果を格納して `return View(\"Result\", viewModel);` でビューに渡します。\nこれにより、スペルミスや型の間違いをコンパイル時（実行する前）に検知できるため、安全な開発ができます。"
+    },
+    {
+      "file": "03_MvcCalculator/Views/Calculator/Result.cshtml",
+      "line": 1,
+      "description": "ビューの先頭に `@model ...` を記述することで、このビューが受け取る ViewModel の型を定義します。これにより、スペルミスがあればビルドエラーになり、コードエディタが入力候補を補完してくれるようになります。"
+    },
+    {
+      "file": "03_MvcCalculator/Views/Calculator/Result.cshtml",
+      "selection": {
+        "start": {
+          "line": 18,
+          "character": 1
+        },
+        "end": {
+          "line": 33,
+          "character": 20
+        }
+      },
+      "description": "遷移先である `Result.cshtml` のテーブル表示部分です。\nController から渡された ViewModel の値を、`@Model.A` や `@Model.Sum` のようにして動的に画面に表示します。"
+    },
+    {
+      "file": "03_MvcCalculator/Views/Calculator/Index.cshtml",
+      "line": 1,
+      "description": "`dotnet run` を実行し、ブラウザで `/Calculator`（または `/Calculator/Index`）にアクセスしてフォームに入力し、実際に送信して結果画面に遷移する一連のデータフローを確かめてみましょう！"
+    }
+  ]
+}

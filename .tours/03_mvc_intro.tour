@@ -1,0 +1,73 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "03: MVC Basics",
+  "steps": [
+    {
+      "file": "03_MvcCalculator/Program.cs",
+      "line": 22,
+      "description": "**MVC のルーティング設定**\n\nMinimal API では `MapGet(\"/tashizan\", ...)` のようにURLと処理を1つずつ手書きで紐付けていましたが、MVC ではここにある `MapControllerRoute` で**ルーティングのルール（パターン）**を1行で定義します。\n\n`{controller=Calculator}/{action=Index}/{id?}` は「URLを `/コントローラー名/アクション名` の形式で自動的に振り分ける」という意味です。"
+    },
+    {
+      "file": "03_MvcCalculator/Program.cs",
+      "line": 24,
+      "description": "**ルーティングパターンの読み方**\n\n`{controller=Calculator}` → URLの1つ目の部分がコントローラー名（省略時は `Calculator`）\n`{action=Index}` → URLの2つ目の部分がアクション名（省略時は `Index`）\n`{id?}` → URLの3つ目の部分が `id` パラメータ（`?` は省略可能の意味）。アクションの引数に `int? id` を書いておくと `/Calculator/Detail/5` のように渡せます。商品詳細ページなどでよく使われます。\n\n例えば:\n- `/Calculator/Tashizan` → `CalculatorController` の `Tashizan()` メソッドを実行\n- `/Calculator/Hikizan` → `CalculatorController` の `Hikizan()` メソッドを実行\n- `/Calculator` → アクション省略 → デフォルトの `Index()` を実行\n\n> 💡 **補足: `[Route]` 属性によるルーティング**\n> ここでは `MapControllerRoute` によるパターンベースのルーティングを使っていますが、実務では各アクションに `[Route(\"/api/calc\")]` のように個別にURLを指定する**属性ルーティング**もよく使われます。属性ルーティングを使うと、`MapControllerRoute` のパターンより優先されるため、URLを自由にカスタマイズできます。"
+    },
+    {
+      "file": "03_MvcCalculator/Controllers/CalculatorController.cs",
+      "line": 8,
+      "description": "**コントローラーとURLの関係**\n\nクラス名 `CalculatorController` から末尾の `Controller` を取り除いた `Calculator` が、URLの最初の部分になります。\nこのクラスの中にあるメソッド（アクション）が、URLの2つ目の部分に対応します。\n\nつまり、このクラスに `Tashizan()` メソッドがあれば `/Calculator/Tashizan` で呼び出せます。"
+    },
+    {
+      "file": "03_MvcCalculator/Controllers/CalculatorController.cs",
+      "selection": {
+        "start": {
+          "line": 19,
+          "character": 1
+        },
+        "end": {
+          "line": 29,
+          "character": 6
+        }
+      },
+      "description": "Controller の `Tashizan` アクションです。\nURL `/Calculator/Tashizan` にアクセスすると、このメソッドが実行されます。\n\nここでは `10 + 5` の計算結果の文字列を `ViewBag.Message` に格納しています。\n\n> ⚠️ **実務での注意**\n> `ViewBag` は簡易的なデータ受け渡しには便利ですが、型安全ではない（書き間違えてもビルド時にエラーにならず、実行するまで気付けない）ため、実務で画面タイトル以外の複雑なデータを渡す際は非推奨とされています。実務では通常、型がカチッと決まった「ViewModel」を使用します（Step 4 で学習します）。"
+    },
+    {
+      "file": "03_MvcCalculator/Views/Calculator/Tashizan.cshtml",
+      "selection": {
+        "start": {
+          "line": 8,
+          "character": 1
+        },
+        "end": {
+          "line": 10,
+          "character": 11
+        }
+      },
+      "description": "こちらが対応するビュー（HTMLで画面の見た目を定義するファイル）です。\n`@ViewBag.Message` という記述（HTML内にC#コードを埋め込める「Razor構文」）を使用することで、コントローラーから渡されたメッセージを動的に埋め込んで表示します。\n\nビューファイルの配置場所にも規約があります:\n`Views/Calculator/Tashizan.cshtml` → `Calculator` コントローラーの `Tashizan` アクション用のビュー、という命名規則で自動的に見つけてくれます。"
+    },
+    {
+      "file": "03_MvcCalculator/Controllers/CalculatorController.cs",
+      "selection": {
+        "start": {
+          "line": 31,
+          "character": 1
+        },
+        "end": {
+          "line": 38,
+          "character": 6
+        }
+      },
+      "description": "TODO: コントローラーの `Hikizan` アクション（URL: `/Calculator/Hikizan`）のハンズオン課題です。\n先ほど見た `Tashizan` アクションの実装方法を参考に、引き算の計算結果を `ViewBag.Message` に設定するコードを実装してください。"
+    },
+    {
+      "file": "03_MvcCalculator/Views/Calculator/Hikizan.cshtml",
+      "line": 9,
+      "description": "コントローラー側での実装が終わると、このビューの中で `@ViewBag.Message` を通じて引き算結果が画面に表示されるようになります。"
+    },
+    {
+      "file": "03_MvcCalculator/Controllers/CalculatorController.cs",
+      "line": 8,
+      "description": "動作確認をするには、ターミナルで `cd 03_MvcCalculator` に移動し、`dotnet run` で起動します。\nブラウザから `/Calculator/Tashizan` と `/Calculator/Hikizan` にアクセスして結果を確認してください。"
+    }
+  ]
+}

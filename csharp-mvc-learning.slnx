@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="01_ConsoleApp/01_ConsoleApp.csproj" />
+  <Project Path="02_MinimalWebApi/02_MinimalWebApi.csproj" />
+  <Project Path="03_MvcCalculator/03_MvcCalculator.csproj" />
+</Solution>

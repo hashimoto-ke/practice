@@ -1,0 +1,38 @@
+@model _03_MvcCalculator.Models.CalculatorResultViewModel
+@{
+    ViewData["Title"] = "Calculation Result";
+}
+
+<div class="container mt-5">
+    <h2>計算結果</h2>
+    <p>送信された数値を用いてコントローラーで計算した結果です。</p>
+    
+    <table class="table table-bordered col-md-6">
+        <thead>
+            <tr>
+                <th>項目</th>
+                <th>値 / 結果</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>数値 A</td>
+                <td>@Model.A</td>
+            </tr>
+            <tr>
+                <td>数値 B</td>
+                <td>@Model.B</td>
+            </tr>
+            <tr>
+                <td>足し算 (A + B)</td>
+                <td>@Model.Sum</td>
+            </tr>
+            <tr>
+                <td>引き算 (A - B)</td>
+                <td>@Model.Diff</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="/Calculator/Index" class="btn btn-secondary">フォームに戻る</a>
+</div>

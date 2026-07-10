@@ -1,0 +1,20 @@
+@{
+    ViewData["Title"] = "Calculator Form";
+}
+
+<div class="container mt-5">
+    <h2>Calculator Form</h2>
+    <p>フォームに入力した数値を送信し、コントローラーで計算します。</p>
+
+    <form action="/Calculator/Calculate" method="post" class="col-md-6">
+        <div class="mb-3">
+            <label for="a" class="form-label">数値 A</label>
+            <input type="number" name="a" id="a" class="form-control" value="10" required />
+        </div>
+        <div class="mb-3">
+            <label for="b" class="form-label">数値 B</label>
+            <input type="number" name="b" id="b" class="form-control" value="5" required />
+        </div>
+        <button type="submit" class="btn btn-primary">計算する</button>
+    </form>
+</div>
