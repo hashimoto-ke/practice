@@ -1,8 +1,13 @@
 {
-  "$schema": "https://aka.ms/codetour-schema",
   "title": "01: Console App Basics",
   "isPrimary": true,
   "steps": [
+    {
+      "file": "01_ConsoleApp/Program.cs",
+      "line": 1,
+      "title": "ツアーの開始：C#の基本を学ぼう",
+      "description": "最初のステップへようこそ！🎉\n\nこのツアーでは、C#の最も基本的なルール（変数やメソッドの使い方）を学びます。\nまずはプログラムがどこから始まって、どのように動くのかをコードを見ながら確認していきましょう！\n\n準備ができたら、「Next」ボタンを押して進んでください。"
+    },
     {
       "file": "01_ConsoleApp/Program.cs",
       "line": 7,

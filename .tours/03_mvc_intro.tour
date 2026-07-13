@@ -1,11 +1,16 @@
 {
-  "$schema": "https://aka.ms/codetour-schema",
   "title": "03: MVC Basics",
   "steps": [
     {
       "file": "03_MvcCalculator/Program.cs",
+      "line": 1,
+      "title": "ツアーの開始：いよいよMVCの世界へ",
+      "description": "ステップ3へようこそ！🚀\n\nここからは、実際の開発現場で広く使われている**「MVC（Model-View-Controller）」パターン**に挑戦します！\nこれまでは1つのファイルにコードを書いていましたが、MVCでは役割ごとにファイルを分けて開発します。\n\nまずは「URLの交通整理をする設定」から見ていきましょう！"
+    },
+    {
+      "file": "03_MvcCalculator/Program.cs",
       "line": 22,
-      "description": "**MVC のルーティング設定**\n\nMinimal API では `MapGet(\"/tashizan\", ...)` のようにURLと処理を1つずつ手書きで紐付けていましたが、MVC ではここにある `MapControllerRoute` で**ルーティングのルール（パターン）**を1行で定義します。\n\n`{controller=Calculator}/{action=Index}/{id?}` は「URLを `/コントローラー名/アクション名` の形式で自動的に振り分ける」という意味です。"
+      "description": "**MVC のルーティング設定**\n\nMinimal API では `MapGet(\"/tashizan\", ...)` のようにURLと処理を1つずつ手書きで紐付けていましたが、MVC ではここにある `MapControllerRoute` で**ルーティングのルール（パターン）**を定義します。\n\n`{controller=Calculator}/{action=Index}/{id?}` は「URLを `/コントローラー名/アクション名` の形式で自動的に振り分ける」という意味です。"
     },
     {
       "file": "03_MvcCalculator/Program.cs",

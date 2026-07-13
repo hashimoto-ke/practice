@@ -1,7 +1,12 @@
 {
-  "$schema": "https://aka.ms/codetour-schema",
   "title": "02: Web API Basics",
   "steps": [
+    {
+      "file": "02_MinimalWebApi/Program.cs",
+      "line": 1,
+      "title": "ツアーの開始：Webの仕組みを体験しよう",
+      "description": "ステップ2へようこそ！🌐\n\n前のステップではパソコンの中で動くプログラムを作りましたが、今回は**プログラムを「Webサーバー」として動かす方法**を学びます。\n\nURLを使ってブラウザとC#プログラムがどのように通信するのか、その仕組みを体験しましょう！"
+    },
     {
       "file": "02_MinimalWebApi/Program.cs",
       "selection": {

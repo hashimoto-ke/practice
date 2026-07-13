@@ -1,7 +1,12 @@
 {
-  "$schema": "https://aka.ms/codetour-schema",
   "title": "04: MVC Form Processing",
   "steps": [
+    {
+      "file": "03_MvcCalculator/Views/Calculator/Index.cshtml",
+      "line": 1,
+      "title": "ツアーの開始：現場で役立つフォーム処理",
+      "description": "いよいよ最後のステップです！🏆\n\nここでは、画面の入力フォーム（`<form>`）からデータを送信し、サーバー側で受け取って処理した結果を別の画面に表示するという、**Webアプリの王道フロー**を学びます。\n\n実務で必須となる安全なデータの渡し方「ViewModel」の仕組みもしっかり押さえましょう！"
+    },
     {
       "file": "03_MvcCalculator/Views/Calculator/Index.cshtml",
       "selection": {
