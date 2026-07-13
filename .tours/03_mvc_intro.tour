@@ -70,9 +70,28 @@
       "description": "コントローラー側での実装が終わると、このビューの中で `@ViewBag.Message` を通じて引き算結果が画面に表示されるようになります。"
     },
     {
+      "file": "03_MvcCalculator/Views/Calculator/Index.cshtml",
+      "selection": {
+        "start": {
+          "line": 8,
+          "character": 1
+        },
+        "end": {
+          "line": 11,
+          "character": 14
+        }
+      },
+      "description": "ここからは、アプリ起動時に表示されるトップ画面（`Index.cshtml`）におけるハンズオンです。\nここにはすでにお手本用の「足し算」ボタンへのリンクが定義されています。"
+    },
+    {
+      "file": "03_MvcCalculator/Views/Calculator/Index.cshtml",
+      "line": 12,
+      "description": "TODO: ここに「引き算」ボタンへのリンクを追加してください。\n足し算ボタンの記述を参考に、HTML（aタグ）を実装しましょう。"
+    },
+    {
       "file": "03_MvcCalculator/Controllers/CalculatorController.cs",
       "line": 8,
-      "description": "動作確認をするには、ターミナルで `cd 03_MvcCalculator` に移動し、`dotnet run` で起動します。\nブラウザから `/Calculator/Tashizan` と `/Calculator/Hikizan` にアクセスして結果を確認してください。"
+      "description": "動作確認をするには、ターミナルで `cd 03_MvcCalculator` に移動し、`dotnet run` で起動します。\nブラウザでトップ画面が開いたら、「足し算」ボタン、および自分で追加した「引き算」ボタンをクリックし、それぞれの計算結果画面へ正しく遷移できることを確認してください。"
     }
   ]
 }

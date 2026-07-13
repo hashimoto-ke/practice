@@ -11,11 +11,11 @@
       "file": "03_MvcCalculator/Views/Calculator/Index.cshtml",
       "selection": {
         "start": {
-          "line": 9,
+          "line": 16,
           "character": 1
         },
         "end": {
-          "line": 19,
+          "line": 26,
           "character": 12
         }
       },
@@ -23,7 +23,7 @@
     },
     {
       "file": "03_MvcCalculator/Views/Calculator/Index.cshtml",
-      "line": 12,
+      "line": 19,
       "description": "数値の入力欄（`<input>`）です。\n`name=\"a\"` と指定されているため、送信されるデータは `a` という名前（キー）で送信されます。"
     },
     {
