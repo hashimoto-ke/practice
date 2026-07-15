@@ -28,26 +28,7 @@ VS Code および **GitHub Codespaces** での学習に対応しており、環�
 
 ## 📖 進め方
 
-### ☁️ パターン A: GitHub Codespaces を使う場合（環境構築不要）
-
-1. **Codespace を起動する**:
-   - 本リポジトリの GitHub ページ上部にある緑色の「**<> Code**」ボタンをクリックします。
-   - 「**Codespaces**」タブを選択し、「**Create codespace on main**」をクリックします。
-   - ブラウザ上で VS Code 環境が立ち上がります（.NET SDK や必要な拡張機能は自動でセットアップされます）。
-
-2. **CodeTour を開始する**:
-   - 起動後、画面左側のアクティビティバー（アイコンが並ぶ場所）にある「**CodeTour**」のアイコンをクリックします。
-   - `01: Console App Basics` を選択し、ツアーを開始します。
-   - エディタ上に表示されるガイドとコード内の `TODO` コメントに従って、コードを実装していきます。
-
-3. **Webアプリの実行と確認**:
-   - ターミナルで `dotnet run` を実行します（例: `cd 03_MvcCalculator` してから `dotnet run`）。
-   - アプリが起動すると、画面右下に「**ブラウザで開く (Open in Browser)**」という通知ポップアップが表示されるので、それをクリックすると実行中のWebアプリを確認できます。
-   - または、ターミナル横の「**Ports (ポート)**」タブから、地球儀マークをクリックして開くこともできます。
-
----
-
-### 💻 パターン B: ローカル環境で実行する場合
+### 💻 パターン A: ローカル環境で実行する場合
 
 #### 前提条件
 1. **[.NET SDK 10.0 以降](https://dotnet.microsoft.com/download)** をインストール
@@ -57,9 +38,19 @@ VS Code および **GitHub Codespaces** での学習に対応しており、環�
 #### 手順
 1. **リポジトリをクローンして VS Code で開く**:
 2. **CodeTour を開始する**:
-   - 左側の「CodeTour」パネルからツアーを選択して開始します。
-3. **実行と動作確認**:
-   各プロジェクトのフォルダに移動して `dotnet run` を実行します。
-   - **Step 1**: `cd 01_ConsoleApp && dotnet run`
-   - **Step 2**: `cd 02_MinimalWebApi && dotnet run`
-   - **Step 3 & 4**: `cd 03_MvcCalculator && dotnet run`
+   - アクティビティバー（アイコンが並ぶ場所）にある「**Explorer**」のアイコンをクリックします。
+   - サイドバーの下部にある「CodeTour」から`01: Console App Basics` を選択し、ツアーを開始します。
+
+---
+
+### ☁️ パターン B: GitHub Codespaces を使う場合（環境構築不要）
+
+1. **Codespace を起動する**:
+   - 本リポジトリの GitHub ページ上部にある緑色の「**<> Code**」ボタンをクリックします。
+   - 「**Codespaces**」タブを選択し、「**Create codespace on main**」をクリックします。
+   - ブラウザ上で VS Code 環境が立ち上がります（.NET SDK や必要な拡張機能は自動でセットアップされます）。
+
+2. **CodeTour を開始する**:
+   - 起動後、画面左側の   - アクティビティバー（アイコンが並ぶ場所）にある「**Explorer**」のアイコンをクリックします。
+   - サイドバーの下部にある「CodeTour」から`01: Console App Basics` を選択し、ツアーを開始します。
+
