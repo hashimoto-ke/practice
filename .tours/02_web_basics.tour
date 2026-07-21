@@ -1,5 +1,6 @@
 {
   "title": "02: Web API Basics",
+  "ref": "main", 
   "steps": [
     {
       "file": "02_MinimalWebApi/Program.cs",

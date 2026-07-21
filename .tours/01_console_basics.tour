@@ -1,5 +1,6 @@
 {
   "title": "01: Console App Basics",
+  "ref": "main", 
   "isPrimary": true,
   "steps": [
     {
@@ -31,11 +32,11 @@
       "file": "01_ConsoleApp/Program.cs",
       "selection": {
         "start": {
-          "line": 15,
+          "line": 31,
           "character": 1
         },
         "end": {
-          "line": 16,
+          "line": 32,
           "character": 62
         }
       },
@@ -45,11 +46,11 @@
       "file": "01_ConsoleApp/Program.cs",
       "selection": {
         "start": {
-          "line": 23,
+          "line": 39,
           "character": 1
         },
         "end": {
-          "line": 26,
+          "line": 42,
           "character": 10
         }
       },
@@ -59,11 +60,11 @@
       "file": "01_ConsoleApp/Program.cs",
       "selection": {
         "start": {
-          "line": 18,
+          "line": 34,
           "character": 1
         },
         "end": {
-          "line": 20,
+          "line": 36,
           "character": 100
         }
       },
@@ -73,11 +74,11 @@
       "file": "01_ConsoleApp/Program.cs",
       "selection": {
         "start": {
-          "line": 28,
+          "line": 44,
           "character": 1
         },
         "end": {
-          "line": 32,
+          "line": 48,
           "character": 10
         }
       },

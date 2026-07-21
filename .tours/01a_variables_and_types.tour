@@ -1,0 +1,50 @@
+{
+  "title": "01a: Variables and Types",
+  "ref": "main", 
+  "steps": [
+    {
+      "file": "01_ConsoleApp/Program.cs",
+      "line": 9,
+      "description": "**変数の宣言**\n\nC# では `型 変数名 = 値;` という形式で変数を宣言します。\nここでは `int`（整数型）の変数 `a` に `10` を代入しています。\n\n`int` は \"integer\"（整数）の略で、小数点のない数値（1, 42, -100 など）を扱います。"
+    },
+    {
+      "file": "01_ConsoleApp/Program.cs",
+      "line": 14,
+      "description": "**string 型（文字列）**\n\n`string` は文字列（テキスト）を扱う型です。値は必ずダブルクォーテーション `\"\"` で囲みます。\n名前、メッセージ、住所など、文字で表現するデータに使います。"
+    },
+    {
+      "file": "01_ConsoleApp/Program.cs",
+      "line": 15,
+      "description": "**double 型（小数）**\n\n`double` は小数点を含む数値を扱う型です。\n円周率（3.14）や金額（1980.5）など、精密な数値計算に使います。"
+    },
+    {
+      "file": "01_ConsoleApp/Program.cs",
+      "line": 16,
+      "description": "**bool 型（真偽値）**\n\n`bool` は `true`（はい）か `false`（いいえ）の2つの値だけを持つ型です。\n「ログインしているか？」「処理が完了したか？」のような条件判定に使います。"
+    },
+    {
+      "file": "01_ConsoleApp/Program.cs",
+      "line": 24,
+      "description": "**var キーワード（型推論）**\n\n`var` を使うと、右辺の値（`=` の右側）からコンパイラが自動的に型を判断してくれます。\nここでは `\"これは...\"` という文字列を代入しているので、`var` は `string` と同じ意味になります。\n\n`var` はコードを短く書きたいときに便利ですが、型が分かりにくくなる場合は明示的に書く方が読みやすいです。"
+    },
+    {
+      "file": "01_ConsoleApp/Program.cs",
+      "selection": {
+        "start": {
+          "line": 27,
+          "character": 1
+        },
+        "end": {
+          "line": 28,
+          "character": 100
+        }
+      },
+      "description": "TODO: ここが変数のハンズオン課題です！\n好きな型（`int`, `string`, `double`, `bool`）を使って新しい変数を宣言し、`Console.WriteLine` で出力してみましょう。"
+    },
+    {
+      "file": "01_ConsoleApp/Program.cs",
+      "line": 19,
+      "description": "**文字列補間（$\"...\"）**\n\n`$\"greeting = {greeting}\"` のように、文字列の先頭に `$` を付けると、`{}` の中に変数を埋め込めます。\nこれを「文字列補間（String Interpolation）」と呼び、変数の値を文字列に組み込んで出力するときに非常に便利です。\n\n実装が完了したら、ターミナルで `cd 01_ConsoleApp` と移動し、`dotnet run` で実行して変数の値が正しく表示されることを確認してください。"
+    }
+  ]
+}

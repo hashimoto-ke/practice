@@ -9,7 +9,23 @@ namespace ConsoleApp
             int a = 10;
             int b = 5;
 
+            // --- 変数と型の基本 ---
+            // C# では変数を宣言するとき「型 変数名 = 値;」の形式で書きます。
+            string greeting = "Hello, C#!";
+            double pi = 3.14;
+            bool isLearning = true;
+
             Console.WriteLine("--- C# Console Basics ---");
+            Console.WriteLine($"greeting = {greeting}");
+            Console.WriteLine($"pi = {pi}");
+            Console.WriteLine($"isLearning = {isLearning}");
+
+            // var を使うと、右辺の値から型を自動で推論してくれます。
+            var message = "これは var で宣言した文字列です";
+            Console.WriteLine($"message = {message}");
+
+            // TODO: 自分で新しい変数を宣言して Console.WriteLine で出力してみましょう。
+            // ヒント: 好きな型（int, string, double, bool）を使ってみてください。
 
             // お手本: 足し算の実行と出力
             int sum = Tashizan(a, b);

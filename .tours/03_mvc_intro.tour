@@ -1,5 +1,6 @@
 {
   "title": "03: MVC Basics",
+  "ref": "main", 
   "steps": [
     {
       "file": "03_MvcCalculator/Program.cs",
@@ -9,12 +10,12 @@
     },
     {
       "file": "03_MvcCalculator/Program.cs",
-      "line": 22,
+      "line": 27,
       "description": "**MVC のルーティング設定**\n\nMinimal API では `MapGet(\"/tashizan\", ...)` のようにURLと処理を1つずつ手書きで紐付けていましたが、MVC ではここにある `MapControllerRoute` で**ルーティングのルール（パターン）**を定義します。\n\n`{controller=Calculator}/{action=Index}/{id?}` は「URLを `/コントローラー名/アクション名` の形式で自動的に振り分ける」という意味です。"
     },
     {
       "file": "03_MvcCalculator/Program.cs",
-      "line": 24,
+      "line": 29,
       "description": "**ルーティングパターンの読み方**\n\n`{controller=Calculator}` → URLの1つ目の部分がコントローラー名（省略時は `Calculator`）\n`{action=Index}` → URLの2つ目の部分がアクション名（省略時は `Index`）\n`{id?}` → URLの3つ目の部分が `id` パラメータ（`?` は省略可能の意味）。アクションの引数に `int? id` を書いておくと `/Calculator/Detail/5` のように渡せます。商品詳細ページなどでよく使われます。\n\n例えば:\n- `/Calculator/Tashizan` → `CalculatorController` の `Tashizan()` メソッドを実行\n- `/Calculator/Hikizan` → `CalculatorController` の `Hikizan()` メソッドを実行\n- `/Calculator` → アクション省略 → デフォルトの `Index()` を実行\n\n> 💡 **補足: `[Route]` 属性によるルーティング**\n> ここでは `MapControllerRoute` によるパターンベースのルーティングを使っていますが、実務では各アクションに `[Route(\"/api/calc\")]` のように個別にURLを指定する**属性ルーティング**もよく使われます。属性ルーティングを使うと、`MapControllerRoute` のパターンより優先されるため、URLを自由にカスタマイズできます。"
     },
     {
@@ -26,11 +27,11 @@
       "file": "03_MvcCalculator/Controllers/CalculatorController.cs",
       "selection": {
         "start": {
-          "line": 19,
+          "line": 35,
           "character": 1
         },
         "end": {
-          "line": 29,
+          "line": 44,
           "character": 6
         }
       },
@@ -54,11 +55,11 @@
       "file": "03_MvcCalculator/Controllers/CalculatorController.cs",
       "selection": {
         "start": {
-          "line": 31,
+          "line": 46,
           "character": 1
         },
         "end": {
-          "line": 38,
+          "line": 53,
           "character": 6
         }
       },
@@ -71,16 +72,7 @@
     },
     {
       "file": "03_MvcCalculator/Views/Calculator/Index.cshtml",
-      "selection": {
-        "start": {
-          "line": 8,
-          "character": 1
-        },
-        "end": {
-          "line": 11,
-          "character": 14
-        }
-      },
+      "line": 10,
       "description": "ここからは、アプリ起動時に表示されるトップ画面（`Index.cshtml`）におけるハンズオンです。\nここにはすでにお手本用の「足し算」ボタンへのリンクが定義されています。"
     },
     {

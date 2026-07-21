@@ -1,21 +1,23 @@
 {
   "title": "04: MVC Form Processing",
+  "ref": "main", 
   "steps": [
     {
       "file": "03_MvcCalculator/Views/Calculator/Index.cshtml",
       "line": 1,
       "title": "ツアーの開始：現場で役立つフォーム処理",
-      "description": "いよいよ最後のステップです！🏆\n\nここでは、画面の入力フォーム（`<form>`）からデータを送信し、サーバー側で受け取って処理した結果を別の画面に表示するという、**Webアプリの王道フロー**を学びます。\n\n実務で必須となる安全なデータの渡し方「ViewModel」の仕組みもしっかり押さえましょう！"
+      "description": "ここでは、画面の入力フォーム（`<form>`）からデータを送信し、サーバー側で受け取って処理した結果を別の画面に表示するという、**Webアプリの王道フロー**を学びます。\n\n実務で必須となる安全なデータの渡し方「ViewModel」の仕組みもしっかり押さえましょう！"
     },
     {
       "file": "03_MvcCalculator/Views/Calculator/Index.cshtml",
+      "line": 17,
       "selection": {
         "start": {
-          "line": 16,
+          "line": 17,
           "character": 1
         },
         "end": {
-          "line": 26,
+          "line": 35,
           "character": 12
         }
       },
@@ -23,24 +25,24 @@
     },
     {
       "file": "03_MvcCalculator/Views/Calculator/Index.cshtml",
-      "line": 19,
+      "line": 24,
       "description": "数値の入力欄（`<input>`）です。\n`name=\"a\"` と指定されているため、送信されるデータは `a` という名前（キー）で送信されます。"
     },
     {
       "file": "03_MvcCalculator/Controllers/CalculatorController.cs",
-      "line": 13,
+      "line": 19,
       "description": "**`[HttpGet]` と `[HttpPost]` によるルーティングの振り分け**\n\n同じコントローラー内に同じURLパスに対応するアクションが複数ある場合、`[HttpGet]` や `[HttpPost]` の属性によって、アクセス方法に応じた振り分けが行われます。\n\n- `[HttpGet]` → ブラウザのアドレス欄にURLを入力してページを開いたとき（データの取得）\n- `[HttpPost]` → HTMLフォームの送信ボタンを押してデータを送りつけたとき\n\n属性を省略した場合（例: Step 3 の `Tashizan()`）は、デフォルトで GET リクエストに対応します。"
     },
     {
       "file": "03_MvcCalculator/Controllers/CalculatorController.cs",
       "selection": {
         "start": {
-          "line": 40,
+          "line": 55,
           "character": 1
         },
         "end": {
-          "line": 45,
-          "character": 50
+          "line": 60,
+          "character": 100
         }
       },
       "description": "フォームの `action=\"/Calculator/Calculate\"` が **POST** で送信されると、ルーティングにより `CalculatorController` の中から `[HttpPost]` が付いた `Calculate` メソッドが選ばれて実行されます。\n\nもしブラウザのURL欄に直接 `/Calculator/Calculate` と入力してアクセスした場合（GETリクエスト）、`[HttpGet]` の `Calculate` メソッドは存在しないため 405 エラー（許可されていないメソッド）になります。\n\n引数名 `int a` と `int b` は、HTML フォームの `name` 属性（`name=\"a\"`, `name=\"b\"`）と一致させることで、自動的に値が代入されます（モデルバインド）。"
@@ -49,11 +51,11 @@
       "file": "03_MvcCalculator/Controllers/CalculatorController.cs",
       "selection": {
         "start": {
-          "line": 47,
+          "line": 71,
           "character": 1
         },
         "end": {
-          "line": 55,
+          "line": 74,
           "character": 50
         }
       },

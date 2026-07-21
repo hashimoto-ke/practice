@@ -1,3 +1,4 @@
+@model _03_MvcCalculator.Models.CalculatorResultViewModel
 @{
     ViewData["Title"] = "Calculator Form";
 }
@@ -14,13 +15,21 @@
     <p>フォームに入力した数値を送信し、コントローラーで計算します。</p>
 
     <form action="/Calculator/Calculate" method="post" class="col-md-6">
+        <!-- フォーム全体のバリデーションエラー要約を表示する領域 -->
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
         <div class="mb-3">
             <label for="a" class="form-label">数値 A</label>
-            <input type="number" name="a" id="a" class="form-control" value="10" required />
+            <!-- サーバー側の必須バリデーションの動作を確認するため、ブラウザ側の制限(required)は外しておきます。 -->
+            <input type="number" name="a" id="a" class="form-control" value="@(Model?.A ?? 10)" />
+            <!-- 個別エラーの表示領域 -->
+            <span asp-validation-for="A" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <label for="b" class="form-label">数値 B</label>
-            <input type="number" name="b" id="b" class="form-control" value="5" required />
+            <input type="number" name="b" id="b" class="form-control" value="@(Model?.B ?? 5)" />
+            <!-- TODO: ここに数値Bのバリデーションエラー表示用の span タグ（asp-validation-for="B"）を追加してください。 -->
+            <!-- ヒント: 数値Aの表示タグを参考にしてください。 -->
         </div>
         <button type="submit" class="btn btn-primary">計算する</button>
     </form>

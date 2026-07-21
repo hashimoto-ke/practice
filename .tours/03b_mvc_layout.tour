@@ -1,0 +1,44 @@
+{
+  "title": "03b: Layout and Shared Views",
+  "ref": "main", 
+  "steps": [
+    {
+      "file": "03_MvcCalculator/Views/_ViewStart.cshtml",
+      "line": 2,
+      "description": "**共通レイアウトの自動適用**\n\n`_ViewStart.cshtml` は、各ページ（ビュー）が画面に描画される前に自動的に読み込まれる特別なファイルです。\n\nここで `Layout = \"_Layout\";` と指定することで、このフォルダ内にあるすべてのビューは、デフォルトで共通レイアウトである `_Layout.cshtml` をベースにして表示されるようになります。"
+    },
+    {
+      "file": "03_MvcCalculator/Views/Shared/_Layout.cshtml",
+      "line": 1,
+      "description": "**_Layout.cshtml の全体構造**\n\nこれがアプリ全体の「骨組み（共通レイアウト）」となるファイルです。\nHTML のヘッダー（`<head>`）やスタイルシート（CSS）の読み込み設定など、全画面で共通して使用するリソースがここに記述されています。"
+    },
+    {
+      "file": "03_MvcCalculator/Views/Shared/_Layout.cshtml",
+      "selection": {
+        "start": {
+          "line": 36,
+          "character": 1
+        },
+        "end": {
+          "line": 40,
+          "character": 100
+        }
+      },
+      "description": "**個別ページの内容が埋め込まれる場所**\n\nこの `@RenderBody()` は非常に重要な記述です。\n個々の画面（例えば `Index.cshtml` や `Tashizan.cshtml`）の中身は、すべてこの `@RenderBody()` の位置に自動的にはめ込まれて表示されます。\n\nこれにより、ヘッダーやフッターを何度も書く必要がなくなり、共通化が実現します。"
+    },
+    {
+      "file": "03_MvcCalculator/Views/Shared/_Layout.cshtml",
+      "selection": {
+        "start": {
+          "line": 29,
+          "character": 1
+        },
+        "end": {
+          "line": 30,
+          "character": 100
+        }
+      },
+      "description": "TODO: ここがハンズオン課題です！\n\nメニューバーに「Calculator」のページを直接開くためのリンク（aタグ）を追加しましょう。すぐ上にある Home のリンクコードを参考に、`asp-controller` と `asp-action` を適切に書き換えてください。\n\n実装が終わったら、`dotnet run` を実行し、ブラウザのメニューから直接 Calculator 画面へジャンプできるようになることを確認してください。"
+    }
+  ]
+}

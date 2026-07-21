@@ -1,0 +1,81 @@
+{
+  "title": "04b: Form Validation",
+  "ref": "main", 
+  "steps": [
+    {
+      "file": "03_MvcCalculator/Models/CalculatorResultViewModel.cs",
+      "selection": {
+        "start": {
+          "line": 7,
+          "character": 1
+        },
+        "end": {
+          "line": 10,
+          "character": 100
+        }
+      },
+      "description": "**Data Annotations（データ注釈属性）**\n\nC# では、プロパティの上に `[Required]` や `[Range]` などの**属性（Attribute）**を付与するだけで、自動的に強力なバリデーション（入力値チェック）のルールを定義できます。\n\n- `[Required]`: 空白や未入力を拒否する「必須チェック」です。\n- `[Range(最小値, 最大値)]`: 数値が一定の範囲に収まっているかをチェックします。"
+    },
+    {
+      "file": "03_MvcCalculator/Models/CalculatorResultViewModel.cs",
+      "selection": {
+        "start": {
+          "line": 12,
+          "character": 1
+        },
+        "end": {
+          "line": 14,
+          "character": 100
+        }
+      },
+      "description": "TODO: 数値 B にも、数値 A と同様に必須チェック（`[Required]`）と範囲チェック（`[Range]`：-9999〜9999）の属性を定義してください。\n\nヒント: すぐ上にある数値 A に設定されている属性の書き方を参考にしましょう。"
+    },
+    {
+      "file": "03_MvcCalculator/Controllers/CalculatorController.cs",
+      "selection": {
+        "start": {
+          "line": 62,
+          "character": 1
+        },
+        "end": {
+          "line": 67,
+          "character": 10
+        }
+      },
+      "description": "**コントローラーでの検証結果の確認**\n\nフォームから送信されたデータがルールをクリアしているかは、`ModelState.IsValid` で判定できます。\n\nルール違反（例：空欄のまま送信、あるいは 99999 などの大きすぎる数値を入力）があった場合は `false` になり、`return View(\"Index\", model);` によってエラー情報を持たせたまま元の入力画面に戻ります。"
+    },
+    {
+      "file": "03_MvcCalculator/Views/Calculator/Index.cshtml",
+      "selection": {
+        "start": {
+          "line": 25,
+          "character": 1
+        },
+        "end": {
+          "line": 26,
+          "character": 100
+        }
+      },
+      "description": "**ビューでのエラーメッセージ表示**\n\n入力フォーム側（HTML）でエラーメッセージを表示させるには、`<span asp-validation-for=\"プロパティ名\"></span>` というタグヘルパー（ASP.NET Core の独自タグ）を配置します。\n\nエラーが発生した際、このタグの中に、モデルクラスで設定した `ErrorMessage` の文言が自動的にレンダリング（描画）されます。"
+    },
+    {
+      "file": "03_MvcCalculator/Views/Calculator/Index.cshtml",
+      "selection": {
+        "start": {
+          "line": 31,
+          "character": 1
+        },
+        "end": {
+          "line": 32,
+          "character": 100
+        }
+      },
+      "description": "TODO: 数値 B の入力欄の下にも、エラーメッセージを表示するための `span` タグ（`asp-validation-for=\"B\"`）を追加してください。\n\nヒント: 数値 A のエラー表示用 span タグを参考にしてください。"
+    },
+    {
+      "file": "03_MvcCalculator/Views/Calculator/Index.cshtml",
+      "line": 1,
+      "description": "実装が完了したら、`dotnet run` を実行して動作を確認してみましょう！\n\n数値 A や 数値 B を空欄のまま「計算する」ボタンを押したり、10000 以上の数値を入力した際に、画面遷移せずに赤い文字で設定したエラーメッセージが表示されることを確かめてください。"
+    }
+  ]
+}

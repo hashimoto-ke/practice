@@ -1,7 +1,12 @@
+using _03_MvcCalculator.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// TODO: ここで作成した CalculatorService を ICalculatorService に紐付けて DI コンテナに登録してください。
+// ヒント: builder.Services.AddScoped<インターフェース名, 実装クラス名>(); のように記述します。
 
 var app = builder.Build();
 
