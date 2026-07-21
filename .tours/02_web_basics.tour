@@ -43,16 +43,7 @@
     },
     {
       "file": "02_MinimalWebApi/Program.cs",
-      "selection": {
-        "start": {
-          "line": 13,
-          "character": 1
-        },
-        "end": {
-          "line": 18,
-          "character": 4
-        }
-      },
+      "pattern": "TODO: 引き算の結果を返す",
       "description": "TODO: `/hikizan` に対するルートのハンズオン課題です。\n現在は固定のダミー文字列を返しているので、足し算のエンドポイント（`/tashizan`）をヒントにして、引き算の結果を文字列として返すように実装してください。"
     },
     {

@@ -15,7 +15,7 @@
           "character": 2
         }
       },
-      "description": "**インターフェース（規約）の導入**\n\nもともとコントローラーの中に直接書いていた計算式（`a + b` など）を外に切り出すにあたり、まずはその『窓口（規約）』となるインターフェースを定義します。\n\nこれにより、コントローラーは「足し算や引き算の中身（計算式など）」を直接抱え込まずに、「計算を依頼するためのルール」だけを知っていればよい状態を作ります（これを**「責務の分離」**と呼びます）。"
+      "description": "**インターフェース（規約）の導入**\n\nもともとコントローラーの中に直接書いていた計算式（`a + b` など）を外に切り出すにあたり、まずはその『窓口（規約）』となるインターフェースを定義します。\n\nこれにより、コントローラーは「足し算や引き算の中身（計算式など）」を直接抱え込まずに、「計算を依頼するためのルール」だけを知っていればよい状態を作ります（これを「責務の分離」と呼びます）。"
     },
     {
       "file": "03_MvcCalculator/Services/CalculatorService.cs",
@@ -30,7 +30,7 @@
           "character": 2
         }
       },
-      "description": "**サービス（実装）の作成**\n\nインターフェース `ICalculatorService` の規約に従って、実際の計算処理を行う具象クラス（`CalculatorService`）を実装します。\n\nこのようにロジックを別のクラスに隔離することで、後から計算方法を変更しやすくなり、テストも容易になります。"
+      "description": "**サービス（実装）の作成とインターフェースの実装（`:`）**\n\nインターフェース `ICalculatorService` の規約に従って、実際の計算処理を行う具象クラス（`CalculatorService`）を実装します。\n\nこのようにロジックを別クラスに隔離することで、後から計算方法を変更しやすくなり、テストも容易になります。\n\n💡 **`CalculatorService : ICalculatorService` とは？**\nクラス名の横にあるコロン（`:`）は、**「このクラスは `ICalculatorService` のルールに従って中身を作ります！」という宣言**（インターフェースの実装）です。\n\nこの宣言をすると、`ICalculatorService` に書かれているメソッド（`Tashizan` や `Hikizan`）をすべて正しく実装しないとコンパイルエラー（赤波線）になります。"
     },
     {
       "file": "03_MvcCalculator/Program.cs",
@@ -41,15 +41,15 @@
         },
         "end": {
           "line": 9,
-          "character": 62
+          "character": 100
         }
       },
-      "description": "TODO: 作成したサービスをシステム（DIコンテナ）に登録するハンズオン課題です！\n\n`builder.Services.AddScoped<インターフェース名, 実装クラス名>();` のように記述して、サービスを登録してください。\n\nこれにより、システム全体のどこからでも「ICalculatorService が欲しい」と要求したときに、自動的に `CalculatorService` の実体が提供されるようになります。"
+      "description": "TODO: 作成したサービスをシステム（DIコンテナ）に登録するハンズオン課題です！\n\n`builder.Services.AddScoped<インターフェース名, 実装クラス名>();` のように記述して、サービスを登録してください。\n\n💡 **ここで何をしているの？**\nシステムに対して「**今後アプリ内のどこかで `ICalculatorService`（インターフェース）が要求されたら、`CalculatorService`（実体）を作って渡してね！**」という対応関係ルールを登録しています。"
     },
     {
       "file": "03_MvcCalculator/Controllers/CalculatorController.cs",
       "line": 11,
-      "description": "**インターフェース型で受け取る理由（疎結合化）**\n\nコントローラー側でサービスを利用できるようにフィールドを用意します。\n\nここで具体的な実装クラスである `CalculatorService` ではなく、インターフェース `ICalculatorService` の型で宣言するのがポイントです。\n\nコントローラーが特定の計算クラスに直接依存（密結合）するのを防ぎ、共通のルール（インターフェース）にだけ依存させることで、将来「より高機能な計算クラス」や「テスト用のダミー計算クラス」にコントローラーを書き換えることなく簡単に差し替えられるようになります。これを**「疎結合（依存度が低い状態）」**と呼びます。"
+      "description": "コントローラー側でサービスを利用できるようにフィールドを用意します。\n\nここで `CalculatorService`（具体的なクラス）を直接書くのではなく、`ICalculatorService`（インターフェース）を使って受け取る形にします。\n\nこのように、特定のクラスに直接依存させず、インターフェースを間に挟んで結びつきをゆるやかにすることを「**疎結合**」と呼びます。\n\n💡 **イメージで理解する「疎結合」と、そのメリット**\n\n* **密結合（固く結ばれすぎ）：** 壁から出た電線にドライヤーを直接ハンダ付けするような状態。\n* **疎結合（ゆるやか）：** 壁に「**コンセント（インターフェース）**」を作った状態。差し口の形さえ合っていれば、好きな家電をつけ替えられます。\n\n❓ **「で、何をつけ替えると嬉しいの？（計算式なんて変えないのでは？）」**\n\n計算処理だと実感が湧きにくいですが、実務開発では以下のような場面で劇的な効果を発揮します。\n\n1. **自動テスト（UnitTest）でダミーに差し替える**\n   「現在時刻」や「外部決済API」など、テスト時に動かすと困る処理を、テストの時だけ「固定の時間を返すダミー」や「テスト用決済」にサクッと差し替えられます。\n2. **本番の処理を安全に切り替える**\n   コントローラーのコードを一切傷つけずに、裏側の処理だけを新しいクラスに安全に切り替えられます。"
     },
     {
       "file": "03_MvcCalculator/Controllers/CalculatorController.cs",
@@ -67,32 +67,12 @@
     },
     {
       "file": "03_MvcCalculator/Controllers/CalculatorController.cs",
-      "line": 42,
-      "selection": {
-        "start": {
-          "line": 39,
-          "character": 1
-        },
-        "end": {
-          "line": 41,
-          "character": 50
-        }
-      },
+      "pattern": "IActionResult Tashizan()",
       "description": "TODO: Tashizan アクションのサービス呼び出しへの書き換え課題です！\n\n直接の足し算（`a + b`）を行っている部分を、注入された `_calculatorService` の `Tashizan(a, b)` を呼び出す形に書き換えてみましょう。\n\nこれによって、コントローラーから「計算式という具体的な計算ルール」を完全に排除し、計算処理を専門のサービス部品に委譲する形へとリファクタリングされます。"
     },
     {
       "file": "03_MvcCalculator/Controllers/CalculatorController.cs",
-      "line": 74,
-      "selection": {
-        "start": {
-          "line": 69,
-          "character": 1
-        },
-        "end": {
-          "line": 72,
-          "character": 100
-        }
-      },
+      "pattern": "IActionResult Calculate",
       "description": "TODO: Calculate アクションのサービス呼び出しへの書き換え課題です！\n\n直接 `+` や `-` で計算している部分を、`_calculatorService` の `Tashizan` や `Hikizan` を使った計算へ書き換えてみましょう。\n\n引数である `model.A!.Value` と `model.B!.Value` をそれぞれメソッドに渡してあげてください。"
     },
     {

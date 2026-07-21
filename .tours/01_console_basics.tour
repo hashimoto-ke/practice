@@ -11,77 +11,32 @@
     },
     {
       "file": "01_ConsoleApp/Program.cs",
-      "line": 7,
+      "pattern": "static void Main",
       "description": "Main メソッドは、C# のコンソールアプリケーションが起動したときに最初に実行されるエントリーポイント（プログラムの開始地点）です。"
     },
     {
       "file": "01_ConsoleApp/Program.cs",
-      "selection": {
-        "start": {
-          "line": 9,
-          "character": 1
-        },
-        "end": {
-          "line": 10,
-          "character": 23
-        }
-      },
+      "pattern": "int b = ",
       "description": "ここでは変数 `a` と `b` を定義し、それぞれ `10` と `5` で初期化しています。これらを使って計算を行います。"
     },
     {
       "file": "01_ConsoleApp/Program.cs",
-      "selection": {
-        "start": {
-          "line": 31,
-          "character": 1
-        },
-        "end": {
-          "line": 32,
-          "character": 62
-        }
-      },
+      "pattern": "Tashizan\\({a}, {b}",
       "description": "お手本として `Tashizan(a, b)` メソッドを呼び出しています。引数（メソッドに渡す値）に `a` と `b` を渡し、戻り値（足し算結果）を受け取ってコンソールに出力します。"
     },
     {
       "file": "01_ConsoleApp/Program.cs",
-      "selection": {
-        "start": {
-          "line": 39,
-          "character": 1
-        },
-        "end": {
-          "line": 42,
-          "character": 10
-        }
-      },
+      "pattern": "static int Tashizan",
       "description": "こちらが `Tashizan` メソッドの実体です。2つの引数を受け取り、足し算した結果を呼び出し元に返します。"
     },
     {
       "file": "01_ConsoleApp/Program.cs",
-      "selection": {
-        "start": {
-          "line": 34,
-          "character": 1
-        },
-        "end": {
-          "line": 36,
-          "character": 100
-        }
-      },
-      "description": "ハンズオン課題です！\nここのコメントアウト（`//`）を解除して、引き算のメソッドを呼び出すようにしてください。"
+      "pattern": "引き算の実行と出力",
+      "description": "ハンズオン課題です！\nすぐ上の足し算（`Tashizan`）の呼び出しコードを参考にして、ここで引き算メソッドを呼び出し、結果を `Console.WriteLine` で出力するコードを書いてみましょう！"
     },
     {
       "file": "01_ConsoleApp/Program.cs",
-      "selection": {
-        "start": {
-          "line": 44,
-          "character": 1
-        },
-        "end": {
-          "line": 48,
-          "character": 10
-        }
-      },
+      "pattern": "static int Hikizan",
       "description": "TODO: ここが引き算メソッドの実体です。現在は `return 0;` になっています。\n足し算のメソッドである `Tashizan` の実装方法をヒントにして、引き算を正しく処理して結果を返すように実装してみましょう！"
     },
     {

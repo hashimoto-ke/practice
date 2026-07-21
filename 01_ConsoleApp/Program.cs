@@ -25,15 +25,12 @@ namespace ConsoleApp
             Console.WriteLine($"message = {message}");
 
             // TODO: 自分で新しい変数を宣言して Console.WriteLine で出力してみましょう。
-            // ヒント: 好きな型（int, string, double, bool）を使ってみてください。
 
             // お手本: 足し算の実行と出力
             int sum = Tashizan(a, b);
             Console.WriteLine($"Tashizan({a}, {b}) = {sum}");
 
-            // ハンズオン: 引き算の実行（TODO: 以下のコメントアウトを解除し、Hikizanメソッドを実装してください）
-            // int difference = Hikizan(a, b);
-            // Console.WriteLine($"Hikizan({a}, {b}) = {difference}");
+            // ハンズオン: 引き算の実行と出力（TODO: Tashizan の呼び出しを参考に、Hikizan メソッドを呼び出して結果をコンソールに出力してください。）
         }
 
         static int Tashizan(int x, int y)

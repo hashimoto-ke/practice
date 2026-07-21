@@ -10,55 +10,27 @@
     },
     {
       "file": "03_MvcCalculator/Views/Calculator/Index.cshtml",
-      "line": 17,
-      "selection": {
-        "start": {
-          "line": 17,
-          "character": 1
-        },
-        "end": {
-          "line": 35,
-          "character": 12
-        }
-      },
+      "pattern": "<form action=\"/Calculator/Calculate\" method=\"post\"",
       "description": "これが数値を入力して送信するための HTML フォームです。\n`action=\"/Calculator/Calculate\"` により、送信先URLを指定しています。\n`method=\"post\"` により、HTTP POST リクエスト（サーバーにデータを送信する要求）でデータが送信されます。"
     },
     {
       "file": "03_MvcCalculator/Views/Calculator/Index.cshtml",
-      "line": 24,
+      "pattern": "input type=\"number\" name=\"a\" id=\"a\"",
       "description": "数値の入力欄（`<input>`）です。\n`name=\"a\"` と指定されているため、送信されるデータは `a` という名前（キー）で送信されます。"
     },
     {
       "file": "03_MvcCalculator/Controllers/CalculatorController.cs",
-      "line": 19,
+      "pattern": "\n.+IActionResult Index",
       "description": "**`[HttpGet]` と `[HttpPost]` によるルーティングの振り分け**\n\n同じコントローラー内に同じURLパスに対応するアクションが複数ある場合、`[HttpGet]` や `[HttpPost]` の属性によって、アクセス方法に応じた振り分けが行われます。\n\n- `[HttpGet]` → ブラウザのアドレス欄にURLを入力してページを開いたとき（データの取得）\n- `[HttpPost]` → HTMLフォームの送信ボタンを押してデータを送りつけたとき\n\n属性を省略した場合（例: Step 3 の `Tashizan()`）は、デフォルトで GET リクエストに対応します。"
     },
     {
       "file": "03_MvcCalculator/Controllers/CalculatorController.cs",
-      "selection": {
-        "start": {
-          "line": 55,
-          "character": 1
-        },
-        "end": {
-          "line": 60,
-          "character": 100
-        }
-      },
-      "description": "フォームの `action=\"/Calculator/Calculate\"` が **POST** で送信されると、ルーティングにより `CalculatorController` の中から `[HttpPost]` が付いた `Calculate` メソッドが選ばれて実行されます。\n\nもしブラウザのURL欄に直接 `/Calculator/Calculate` と入力してアクセスした場合（GETリクエスト）、`[HttpGet]` の `Calculate` メソッドは存在しないため 405 エラー（許可されていないメソッド）になります。\n\n引数名 `int a` と `int b` は、HTML フォームの `name` 属性（`name=\"a\"`, `name=\"b\"`）と一致させることで、自動的に値が代入されます（モデルバインド）。"
+      "pattern": "IActionResult Calculate",
+      "description": "フォームの `action=\"/Calculator/Calculate\"` が **POST** で送信されると、ルーティングにより `CalculatorController` の中から `[HttpPost]` が付いた `Calculate` メソッドが選ばれて実行されます。\n\nもしブラウザのURL欄に直接 `/Calculator/Calculate` と入力してアクセスした場合（GETリクエスト）、`[HttpGet]` の `Calculate` メソッドは存在しないため 405 エラー（許可されていないメソッド）になります。\n\n引数で受け取っている `CalculatorResultViewModel` のプロパティ名（`A`, `B`）と、HTML フォームの `name` 属性（`name=\"a\"`, `name=\"b\"`）が一致することで、送信された値が自動的に ViewModel 内にセットされます（モデルバインド）。\n\n💡 **補足：大文字・小文字の一致について**\nASP.NET Core の標準的なモデルバインドでは大文字・小文字を区別せずにマッピングしてくれますが、Web API の JSON 通信や他の開発環境では**大文字・小文字が厳密に区別される場合**もあります。基本的には HTML 側の `name` 属性と C# 側のプロパティ名の大文字・小文字を一致させて書く習慣をつけておくのがおすすめです。"
     },
     {
       "file": "03_MvcCalculator/Controllers/CalculatorController.cs",
-      "selection": {
-        "start": {
-          "line": 71,
-          "character": 1
-        },
-        "end": {
-          "line": 74,
-          "character": 50
-        }
-      },
+      "pattern": "return View\\(\"Result\", model\\);",
       "description": "ここでは `ViewBag` ではなく、実務で標準的に使われる **`ViewModel`（ビューに必要なデータをまとめたクラス）** を使用してデータをビューに渡しています。\n`CalculatorResultViewModel` のインスタンス（C#のメモリ上に作成された実体）を作り、その中に計算結果を格納して `return View(\"Result\", viewModel);` でビューに渡します。\nこれにより、スペルミスや型の間違いをコンパイル時（実行する前）に検知できるため、安全な開発ができます。"
     },
     {

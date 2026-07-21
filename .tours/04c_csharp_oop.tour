@@ -15,39 +15,21 @@
           "character": 40
         }
       },
-      "description": "**クラス（設計図）**\n\nC# などのオブジェクト指向言語では、データや処理をまとめる単位として `class`（クラス）を定義します。\n\nクラスはあくまでデータの構造を定義した**「設計図」**であり、この時点ではまだメモリ上には何も存在せず、値を入れることもできません。"
+      "description": "**クラス（設計図）**\n\nC# などのオブジェクト指向言語では、データや処理をまとめる単位として `class`（クラス）を定義します。\n\nクラスはあくまでデータの構造を定義した「**設計図**」であり、この時点ではまだメモリ上には何も存在せず、値を入れることもできません。"
     },
     {
       "file": "03_MvcCalculator/Controllers/CalculatorController.cs",
-      "selection": {
-        "start": {
-          "line": 22,
-          "character": 1
-        },
-        "end": {
-          "line": 28,
-          "character": 10
-        }
-      },
-      "description": "**インスタンス化（実体の生成）と new キーワード**\n\n設計図（クラス）から、実際にデータを格納するためのハコをメモリ上に作成することを**「インスタンス化」**と呼びます。\n\nそれを実行するのが **`new` キーワード**です。`new クラス名()` と書くことで、メモリ上に独立したデータ領域（インスタンス、またはオブジェクト）が作成されます。"
+      "pattern": "var model = new CalculatorResultViewModel",
+      "description": "**インスタンス化（実体の生成）と new キーワード**\n\n設計図（クラス）から、実際にデータを格納するためのハコをメモリ上に作成することを「**インスタンス化**」と呼びます。\n\nそれを実行するのが **`new` キーワード**です。`new クラス名()` と書くことで、メモリ上に独立したデータ領域（インスタンス、またはオブジェクト）が作成されます。"
     },
     {
       "file": "03_MvcCalculator/Controllers/CalculatorController.cs",
-      "selection": {
-        "start": {
-          "line": 26,
-          "character": 1
-        },
-        "end": {
-          "line": 27,
-          "character": 20
-        }
-      },
+      "pattern": "B = 5",
       "description": "**プロパティへの値の代入**\n\nここでは、`new` によって作成されたインスタンスのプロパティ（`A` と `B`）に対して、初期値として `10` と `5` を設定しています。\n\nこのように、設計図から生まれた実体（オブジェクト）は、それぞれ独自の値を保持することができます。"
     },
     {
       "file": "03_MvcCalculator/Controllers/CalculatorController.cs",
-      "line": 29,
+      "pattern": "return View\\(model\\)",
       "description": "**オブジェクトをビューへ渡す**\n\n最後に `return View(model);` によって、値が入った実体（`model`）をビューへ引き渡します。\n\nビュー側（`Index.cshtml`）では、先頭で `@model ...` と指定してこの実体を受け取り、画面の初期値（`value=\"@Model.A\"`）として使用しています。"
     }
   ]

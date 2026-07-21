@@ -48,7 +48,6 @@ public class CalculatorController : Controller
     public IActionResult Hikizan()
     {
         // TODO: 引き算結果を ViewBag.Message に代入してください。
-        // ヒント: Tashizan アクションでの ViewBag.Message の使い方や計算方法を参考にしてください。
         return View();
     }
 
