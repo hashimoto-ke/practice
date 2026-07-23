@@ -1,0 +1,59 @@
+{
+  "title": "06: Unit Testing (xUnit)",
+  "steps": [
+    {
+      "file": "03_MvcCalculator.Tests/CalculatorServiceTests.cs",
+      "line": 6,
+      "description": "**単体テストへようこそ！🎉**\n\nWebアプリ開発では、画面での最終確認だけでなく、コードのロジック自体が正しいかを自動検証する「単体テスト（Unit Test）」が不可欠です。「細かい計算や条件分岐のチェック」などを自動化して手動テストの負担を減らし、さらに「コード修正時に他の機能が壊れていないか」を一瞬で確認できるようになります。\n\nここでは `CalculatorService` を対象に、xUnit フレームワークを使ったテストを学んでいきましょう！"
+    },
+    {
+      "file": "03_MvcCalculator.Tests/CalculatorServiceTests.cs",
+      "line": 13,
+      "selection": {
+        "start": {
+          "line": 13,
+          "character": 1
+        },
+        "end": {
+          "line": 26,
+          "character": 6
+        }
+      },
+      "description": "**[Fact] 属性と AAA パターン**\n\n`[Fact]` は、パラメータを受け取らない固定の単一テストケースに使用します（「常に成り立つ事実」のテスト）。\n\nまた、テストコードは以下の **AAA パターン** で書くのが標準的です:\n- **1. Arrange (準備)**: テスト対象のインスタンスや入力データを準備する\n- **2. Act (実行)**: テストしたいメソッドを実行する\n- **3. Assert (検証)**: `Assert.Equal` 等で期待通りの結果かチェックする"
+    },
+    {
+      "file": "03_MvcCalculator.Tests/CalculatorServiceTests.cs",
+      "selection": {
+        "start": {
+          "line": 34,
+          "character": 1
+        },
+        "end": {
+          "line": 39,
+          "character": 100
+        }
+      },
+      "description": "**[Theory] と [InlineData] 属性（パラメータ化テスト）**\n\n`[Theory]` は、引数を受け取るテストメソッドに使用します。\n\n`[InlineData(a, b, expected)]` を並べることで、1つのテストコードで複数のパターン（通常の数、0、負の数など）をまとめてテストできます。"
+    },
+    {
+      "file": "03_MvcCalculator.Tests/CalculatorServiceTests.cs",
+      "line": 39,
+      "description": "💡 **Fact と Theory の使い分けガイド**\n\n- **`[Fact]` を使う場面**:\n  - 条件が固定のテスト（例: 引数なしの初期化チェック、固定の例外が発生するかのテスト）\n  - 入力パターンを複数用意する必要がないシンプルなテスト\n\n- **`[Theory]` を使う場面**:\n  - 計算ロジックなど、さまざまな入力値パターン（境界値、0、マイナス数値など）を検証したい場合\n  - 同じテスト処理でデータだけを変えて網羅性を高めたい場合"
+    },
+    {
+      "file": "03_MvcCalculator.Tests/CalculatorServiceTests.cs",
+      "pattern": "TODO: ここにテストコードを追加してください。",
+      "description": "TODO: 引き算（`Hikizan`）のテストコードを書いてみましょう！\n\nヒント: Tashizan のテストでの Arrange, Act, Assert の書き方を参考にしてください。"
+    },
+    {
+      "file": "03_MvcCalculator.Tests/CalculatorServiceTests.cs",
+      "pattern": "Hikizan_MultipleValues_ReturnsCorrectDifference",
+      "description": "TODO: 引き算（`Hikizan`）のテストケースを追加してみましょう！\n\n`[InlineData]` を追加して、他のパターン（例: `0 - 0 = 0` や `5 - 10 = -5` など）のテストデータを増やす練習をしてみてください。"
+    },
+    {
+      "file": "03_MvcCalculator.Tests/CalculatorServiceTests.cs",
+      "line": 1,
+      "description": "**テストを実行してみよう！**\n\n実装が確認できたら、ターミナルで以下のコマンドを実行してください:\n`dotnet test` \n\nすべてのテスト（Fact および Theory の各データパターン）が緑色の「Passed」で成功することを確認しましょう！"
+    }
+  ]
+}

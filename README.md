@@ -1,13 +1,13 @@
 # C# & ASP.NET Core MVC 学習ハンズオン教材
 
-C# の基本構文から、Minimal API を使った Web の基礎、そして本格的な ASP.NET Core MVC のフォーム処理や Dependency Injection（依存性注入）までを段階的に学習できるハンズオン教材プロジェクトです。
+C# の基本構文から、Minimal API を使った Web の基礎、そして本格的な ASP.NET Core MVC のフォーム処理、Dependency Injection（依存性注入）、xUnit による単体テストまでを段階的に学習できるハンズオン教材プロジェクトです。
 VS Code および **GitHub Codespaces** での学習に対応しており、環境構築不要でブラウザだけで開始できます。
 
 ---
 
 ## 🚀 学習ロードマップ
 
-本教材は以下の 5 ステップ（全9つのコードツアー）で構成されています。
+本教材は以下の 6 ステップ（全10つのコードツアー）で構成されています。
 
 ### 📂 1. `01_ConsoleApp` (Step 1: コンソール・C#基礎編)
 - **学ぶこと**: プログラムのエントリーポイント、変数・型（`int`, `string`, `bool` 等）、関数の定義、ブレークポイントを使ったステップ実行などのデバッグ手法。
@@ -29,6 +29,10 @@ VS Code および **GitHub Codespaces** での学習に対応しており、環�
 - **学ぶこと**: インターフェース（`ICalculatorService`）の活用による「責務の分離」と「疎結合化」、コンストラクタ注入（DI）、DIコンテナへのサービス登録。
 - **ハンズオン**: サービスの DI コンテナ追加（`AddScoped`）、コンストラクタインジェクションの実装、計算ロジックのサービス移管。
 
+### 📂 6. `03_MvcCalculator.Tests` (Step 6: 単体テスト編)
+- **学ぶこと**: xUnit を使った自動テスト、**AAA パターン**（準備・実行・検証）、**`[Fact]`（固定テスト）** と **`[Theory]`（パラメータ化テスト）** の違い・使い分け、`dotnet test` コマンドでの検証。
+- **ハンズオン**: `[Theory]` と `[InlineData]` を使った引き算ロジックの複数パターン自動テストコード作成。
+
 ---
 
 ## 🗺️ コードツアー (CodeTour) 一覧
@@ -47,6 +51,7 @@ VS Code および **GitHub Codespaces** での学習に対応しており、環�
 | **`04b: Form Validation`** | Step 4 (フォーム応用) | 属性（`[Required]`, `[Range]`）を使った入力バリデーションとエラー表示 |
 | **`04c: OOP Basics`** | Step 4 (オブジェクト指向基礎) | クラス、インスタンス化（`new`）、プロパティとメモリ構造の基礎 |
 | **`05: Dependency Injection`** | Step 5 | インターフェースとサービスを用いた設計（疎結合化）と DI の実装 |
+| **`06: Unit Testing (xUnit)`** | Step 6 | xUnit による単体テスト、`[Fact]` と `[Theory]` の比較・使い分け、`dotnet test` |
 
 ---
 
