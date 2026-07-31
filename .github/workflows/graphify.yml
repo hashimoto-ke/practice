@@ -1,0 +1,42 @@
+name: Build Graphify Knowledge Graph
+
+on:
+  push:
+    branches: [ dev ]
+
+jobs:
+  build-graph:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # 変更をリポジトリにプッシュするために必要
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Install Graphify
+        run: |
+          uv tool install graphifyy
+
+      - name: Run Graphify
+        run: |
+          graphify update . || graphify .
+
+      - name: Commit and Push Graph
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add graphify-out/
+          if git diff --cached --quiet; then
+            echo "No changes in graphify artifacts to commit."
+          else
+            git commit -m "chore: update graphify knowledge graph [skip ci]"
+            git push origin dev
+          fi
