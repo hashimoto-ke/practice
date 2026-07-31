@@ -14,7 +14,7 @@
           "character": 100
         }
       },
-      "description": "**Data Annotations（データ注釈属性）**\n\nC# では、プロパティの上に `[Required]` や `[Range]` などの**属性（Attribute）**を付与するだけで、自動的に強力なバリデーション（入力値チェック）のルールを定義できます。\n\n- `[Required]`: 空白や未入力を拒否する「必須チェック」です。\n- `[Range(最小値, 最大値)]`: 数値が一定の範囲に収まっているかをチェックします。"
+      "description": "**Data Annotations（データ注釈属性）**\n\nC# では、プロパティの上に `[Required]` や `[Range]` などの **属性（Attribute）** を付与するだけで、自動的に強力なバリデーション（入力値チェック）のルールを定義できます。\n\n- `[Required]`: 空白や未入力を拒否する「必須チェック」です。\n- `[Range(最小値, 最大値)]`: 数値が一定の範囲に収まっているかをチェックします。"
     },
     {
       "file": "03_MvcCalculator/Models/CalculatorResultViewModel.cs",

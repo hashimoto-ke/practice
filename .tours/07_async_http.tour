@@ -1,0 +1,55 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "07: Async and External API",
+  "steps": [
+    {
+      "file": "03_MvcCalculator/Services/CurrencyService.cs",
+      "line": 1,
+      "description": "**Step 7: 非同期処理と外部API連携へようこそ！**\n\nこれまでのコードはすべて「同期処理」でした。同期処理では、データベースや外部APIへの通信が終わるまで、プログラムを担当する「スレッド」が **完全に拘束（ブロック）** されて止まってしまいます。\n\nWeb サーバーでは多くのユーザーが同時に利用するため、スレッドがブロックされると他のアクセスをさばけなくなります。これを解決するのが **非同期処理（async / await）** です。"
+    },
+    {
+      "file": "03_MvcCalculator/Services/CurrencyService.cs",
+      "selection": {
+        "start": {
+          "line": 18,
+          "character": 1
+        },
+        "end": {
+          "line": 31,
+          "character": 29
+        }
+      },
+      "description": "**`async Task` と `await` の基本構文**\n\n非同期メソッドには 3 つのルールがあります：\n\n1. メソッドの返り値を `Task`（戻り値なし）または `Task<T>`（戻り値あり）にする\n2. メソッドに `async` キーワードを付ける\n3. 待機したい処理の前に `await` キーワードを付ける\n\n`await Task.Delay(...)` は「非同期で待つ」処理です。この間、スレッドは解放されてスレッドプールに戻り、**他のリクエストを即座に処理** できます。"
+    },
+    {
+      "file": "03_MvcCalculator/Services/CurrencyService.cs",
+      "line": 39,
+      "description": "**`await` で別の非同期メソッドを呼び出す**\n\n`await GetJpyToUsdRateAsync()` は「処理が完了するまで非同期で待機し、結果を取り出す」という意味です。\n\n`async` メソッドは別の `async` メソッドを `await` で非同期呼び出しできます。\n\n💡 日常の例えで理解する「同期」と「非同期」\n\nフードコートで料理を注文したときのことを思い出してみましょう。\n\n* 【同期処理】\n\n料理ができるまで、何もせずカウンターの前でじーっと固まって待ち、料理を受け取ってからお水を取りに行く。\n\n* 【非同期処理】\n\n注文時に「呼び出しベル（Task）」をもらい、料理ができるまでの「待ち時間」を使ってお水を取りに行く。ベルが鳴ったら（await）料理を受け取る。\n\n非同期処理（async / await）を使う最大の理由は、この「待ち時間」を無駄にせず、サーバーやアプリを固まらせないためです！"
+    },
+    {
+      "file": "03_MvcCalculator/Services/CurrencyService.cs",
+      "pattern": "public async Task<decimal> ConvertUsdToJpyAsync",
+      "description": "TODO: ハンズオン課題です！\n\n上の `ConvertJpyToUsdAsync` をお手本に、**ドルから円への換算** を行う非同期メソッドを実装してください。\n\n手順:\n1. `await GetJpyToUsdRateAsync()` でレートを取得する\n2. `usdAmount × rate` を計算して `Math.Round` で丸める\n3. `return 0;` と `await Task.CompletedTask;` を書き換える\n\n実装できたら、`dotnet run` で実行し、ドルから円へ換算できることを確認しましょう。"
+    },
+    {
+      "file": "03_MvcCalculator/Controllers/CurrencyController.cs",
+      "pattern": "public async Task<IActionResult> Index",
+      "description": "**コントローラーのアクションを非同期にする**\n\n通常の `IActionResult` の代わりに `Task<IActionResult>` を返し、`async` キーワードを付けることで、コントローラーのアクション自体を非同期にできます。\n\n`await` によって、応答を待つ間もスレッドが解放されるため、Webサーバーが効率よく他のリクエストを並行処理できます。"
+    },
+    {
+      "file": "03_MvcCalculator/Services/CurrencyService.cs",
+      "pattern": "public async Task<Dictionary<string, decimal>> GetMultipleRatesAsync",
+      "description": "**非同期処理のメリット：並行処理 (`Task.WhenAll`)**\n\n複数の外部API（USD, EUR, GBP）からデータを取得する場合：\n- **同期処理 (`GetMultipleRatesSync`)**: 1つずつ順番に取得するため、1秒 + 1秒 + 1秒 = **合計約3秒** かかります。\n- **非同期処理 (`Task.WhenAll`)**: 3つの非同期タスクを同時に開始し、`await Task.WhenAll(...)` でまとめて並行待機するため、**約1秒** で完了します。"
+    },
+    {
+      "file": "03_MvcCalculator/Views/Currency/Index.cshtml",
+      "line": 1,
+      "description": "**実際に動かして非同期のメリット（速度差）を体感してみましょう！**\n\n1. ターミナルで `cd 03_MvcCalculator` に移動し `dotnet run` を実行します。\n2. ナビゲーションの「外貨換算」画面を開きます。\n3. **「1. 同期で順番に取得」ボタンを押す** ➔ ⏱️ **約 3.0 秒** かかることを確認。\n4. **「2. 非同期で一括取得 (Task.WhenAll)」ボタンを押す** ➔ ⏱️ **約 1.0 秒** で完了することを体感！\n\n非同期処理 (`Task.WhenAll`) を使うことで、複数の通信処理を同時並行で行い、アプリの応答速度を劇的に向上できることが一目で分かります！"
+    },
+    {
+      "file": "03_MvcCalculator/Views/Currency/Index.cshtml",
+      "line": 1,
+      "description": "今回は「自分の処理が速くなる（3秒⇒1秒）」というメリットを体感しました。\n\n実は、ASP.NET Core のようなWebサーバーにおいて、非同期処理（async/await）には「大量のアクセスが来てもサーバーがフリーズしにくくなる」という、もう1つの非常に大きなメリットがあります。\n\n今回の「速度アップ」とはまた違う、サーバーの内部（スレッドプールやスレッドの枯渇）の仕組みが関係しています。\n\nもし「Webサーバーの仕組み」や「実務での重要性」に興味が湧いた方は、ぜひ「ASP.NET Core 非同期処理 スレッド枯渇」などのキーワードで調べてみてください"
+    }
+  ]
+}

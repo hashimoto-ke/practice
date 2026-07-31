@@ -1,0 +1,92 @@
+{
+  "title": "08: EF Core and SQLite",
+  "steps": [
+    {
+      "file": "03_MvcCalculator/Models/CalculationHistory.cs",
+      "line": 1,
+      "description": "**Step 8: データ永続化とORM体験 (EF Core × SQLite) へようこそ！**\n\nこれまではメモリ上（変数の範囲内）でしかデータを扱えませんでしたが、本ステップでは **Entity Framework Core (EF Core)** を使って SQLite データベースに計算履歴を永続化（保存）する方法を学びます。\n\nEF Core は、C# のオブジェクトとデータベースのテーブルを自動的に相互変換してくれる **ORM (Object-Relational Mapper)** です。"
+    },
+    {
+      "file": "03_MvcCalculator/Models/CalculationHistory.cs",
+      "line": 13,
+      "description": "**Entity（エンティティ）クラスの設計と属性（Data Annotations）**\n\nDBのテーブル1行分を表すC#クラスを「Entity」と呼びます。\n\n- **主キー (`Id`)**: EF Core は `Id` という名前のプロパティを自動的に「主キー（Primary Key）」として認識し、自動連番（オートインクリメント）を割り振ります。\n- **テーブル名・カラム名の明示指定**: デフォルトではクラス名やプロパティ名がそのままDBのテーブル名・カラム名になりますが、`[Table(\"tableName\")]` や `[Column(\"columnName\")]` 属性を使うことで、DB上の名称やデータ型を自由に指定できます。"
+    },
+    {
+      "file": "03_MvcCalculator/Data/CalculatorDbContext.cs",
+      "line": 8,
+      "description": "**`DbContext` の役割**\n\n`DbContext` はデータベースとのセッション（接続・問い合わせ・保存）を管理する中心的なクラスです。\n\n`DbSet<CalculationHistory> CalculationHistory` を用意することで、C# から `_db.CalculationHistory` を通じてテーブルデータの取得や保存ができるようになります。"
+    },
+    {
+      "file": "03_MvcCalculator/Data/CalculatorDbContext.cs",
+      "pattern": "public DbSet<CalculationHistory> CalculationHistory",
+      "description": "Entityクラスでテーブル名を指定しない場合、このプロパティ名＝テーブル名（CaluclationHistory）になります。"
+    },
+    {
+      "file": "03_MvcCalculator/Program.cs",
+      "pattern": "options.UseSqlite",
+      "description": "**DbContext の DI 登録と SQLite の接続設定**\n\n`builder.Services.AddDbContext<CalculatorDbContext>(...)` で DB コンテキストを DI コンテナに登録します。\n\n`options.UseSqlite(\"Data Source=calculator.db\")` を指定することで、プロジェクトルート直下に `calculator.db` という軽量な SQLite データベースファイルを作成して使用します。"
+    },
+    {
+      "file": "03_MvcCalculator/Controllers/HistoryController.cs",
+      "selection": {
+        "start": {
+          "line": 26,
+          "character": 1
+        },
+        "end": {
+          "line": 29,
+          "character": 50
+        }
+      },
+      "description": "**非同期でデータを全件取得する (`ToListAsync`)**\n\n`await _db.CalculationHistory.OrderByDescending(...).ToListAsync()` を呼び出すことで、内部で SQL (`SELECT * FROM CalculationHistory ORDER BY CreatedAt DESC`) が自動生成されて非同期で実行されます。"
+    },
+    {
+      "file": "03_MvcCalculator/Controllers/HistoryController.cs",
+      "selection": {
+        "start": {
+          "line": 37,
+          "character": 1
+        },
+        "end": {
+          "line": 46,
+          "character": 50
+        }
+      },
+      "description": "**非同期でデータを追加・保存する (`AddAsync` と `SaveChangesAsync`)**\n\n1. `await _db.CalculationHistory.AddAsync(history)` で新しいエンティティを追加対象としてマークします。\n2. `await _db.SaveChangesAsync()` を呼び出すことで、実際にデータベースに SQL (`INSERT`) が発行されて保存が確定します。"
+    },
+    {
+      "file": "03_MvcCalculator/Controllers/HistoryController.cs",
+      "selection": {
+        "start": {
+          "line": 55,
+          "character": 1
+        },
+        "end": {
+          "line": 61,
+          "character": 50
+        }
+      },
+      "description": "**非同期でデータを削除する (`Remove` と `SaveChangesAsync`)**\n\n1. `await _db.CalculationHistory.FindAsync(id)` で対象レコードを取得します。\n2. `_db.CalculationHistory.Remove(history)` で削除対象としてマークします。\n3. `await _db.SaveChangesAsync()` で DB へ反映（`DELETE` SQL を実行）します。"
+    },
+    {
+      "file": "03_MvcCalculator/Controllers/HistoryController.cs",
+      "pattern": "public async Task<IActionResult> DeleteAll",
+      "description": "TODO: ハンズオン課題です！\n\n全件削除を実行する `DeleteAll` アクションメソッドを完成させてください。"
+    },
+    {
+      "file": "03_MvcCalculator/Data/CalculatorDbContext.cs",
+      "line": 1,
+      "description": "⚙️ **データベースの作成（マイグレーションの実行）**\n\nモデルやコントローラーの準備ができたので、アプリを動かす前にデータベースとテーブルを作成します。\n\n💡 **EF Core におけるマイグレーションとは？**\nC# コード（Entity クラス）の定義や変更に合わせて、実際のデータベースの構造（テーブルや列）を自動作成・更新・同期させる仕組みのことです。\n\n- **コードファースト（本ハンズオンの手法）**: C# コード（Entity）を先に書き、マイグレーションを使って DB テーブルを後から自動生成・追従させる手法。\n- **データベースファースト**: 既存の DB や先に作った DB テーブルから、C# の Entity コードを逆生成（自動生成）する手法（`dotnet ef dbcontext scaffold` コマンド等を使用）。"
+    },
+    {
+      "file": "03_MvcCalculator/Data/CalculatorDbContext.cs",
+      "line": 1,
+      "description": "🛠️ **マイグレーションの実行手順**\n\nターミナルで以下のコマンドを順に実行して、データベース (`calculator.db`) とテーブルを作成しましょう：\n\n1. `cd 03_MvcCalculator`\n2. `dotnet ef migrations add InitialCreate`\n   （C#のモデル定義から、DB作成用のマイグレーションコードを自動生成します）\n3. `dotnet ef database update`\n   （マイグレーションを適用し、実際に SQLite データベースファイルにテーブルを作成します）\n\n💡 **ワンポイント解説**\n* **Migrationsフォルダ**: `add` 実行後にプロジェクト直下に自動作成され、DBの変更履歴（C#コード）が保存されます。\n\n* **マイグレーション名（migrations add コマンド末尾の名称）の決め方**\n  * 1回目は慣習として `InitialCreate`（初期作成）を使用します。\n  * 2回目以降は、AddUserAge など変更内容がわかる名前にします。\n\n* **SQLの生成**: `dotnet ef migrations script -o output.sql` でSQLを出力できます（オプションで未適用分のみの出力も可能です）。"
+    },
+    {
+      "file": "03_MvcCalculator/Views/History/Index.cshtml",
+      "line": 1,
+      "description": "**画面と動作確認**\n\nマイグレーション完了後、`dotnet run` でアプリを起動し、ナビゲーションの「計算履歴」にアクセスしてみましょう！\n\n履歴の追加や削除、ハンズオンで作成した全件削除ボタンが正常にデータベースと連携して動作するか確認してください。"
+    }
+  ]
+}

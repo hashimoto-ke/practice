@@ -1,13 +1,13 @@
 # C# & ASP.NET Core MVC 学習ハンズオン教材
 
-C# の基本構文から、Minimal API を使った Web の基礎、そして本格的な ASP.NET Core MVC のフォーム処理、Dependency Injection（依存性注入）、xUnit による単体テストまでを段階的に学習できるハンズオン教材プロジェクトです。
+C# の基本構文から、Minimal API を使った Web の基礎、本格的な ASP.NET Core MVC のフォーム処理、Dependency Injection（依存性注入）、xUnit による単体テスト、非同期処理 (`async`/`await`)、そして Entity Framework Core × SQLite によるデータ永続化までを段階的に学習できるハンズオン教材プロジェクトです。
 VS Code および **GitHub Codespaces** での学習に対応しており、環境構築不要でブラウザだけで開始できます。
 
 ---
 
 ## 🚀 学習ロードマップ
 
-本教材は以下の 6 ステップ（全10つのコードツアー）で構成されています。
+本教材は以下の 8 ステップ（全12つのコードツアー）で構成されています。
 
 ### 📂 1. `01_ConsoleApp` (Step 1: コンソール・C#基礎編)
 - **学ぶこと**: プログラムのエントリーポイント、変数・型（`int`, `string`, `bool` 等）、関数の定義、ブレークポイントを使ったステップ実行などのデバッグ手法。
@@ -33,6 +33,14 @@ VS Code および **GitHub Codespaces** での学習に対応しており、環�
 - **学ぶこと**: xUnit を使った自動テスト、**AAA パターン**（準備・実行・検証）、**`[Fact]`（固定テスト）** と **`[Theory]`（パラメータ化テスト）** の違い・使い分け、`dotnet test` コマンドでの検証。
 - **ハンズオン**: `[Theory]` と `[InlineData]` を使った引き算ロジックの複数パターン自動テストコード作成。
 
+### 📂 7. `03_MvcCalculator` (Step 7: 非同期処理・外部API連携編)
+- **学ぶこと**: `async` / `await` の基本構文、`Task` と `Task<T>`、非同期スレッド解放の仕組み、`HttpClient` (`AddHttpClient`) を使った通信、JSON デシリアライズ基礎。
+- **ハンズオン**: ドルから円への換算を行う非同期メソッド（`ConvertUsdToJpyAsync`）の実装。
+
+### 📂 8. `03_MvcCalculator` (Step 8: データ永続化・EF Core × SQLite編)
+- **学ぶこと**: ORM (Object-Relational Mapping) と Entity Framework Core の仕組み、Entity クラス設計と主キー、`DbContext`、SQLite データベース接続設定、マイグレーション、非同期 CRUD 操作 (`ToListAsync`, `AddAsync`, `SaveChangesAsync`, `Remove`)。
+- **ハンズオン**: 全件削除アクション（`DeleteAll` / `ExecuteDeleteAsync`）の実装。
+
 ---
 
 ## 🗺️ コードツアー (CodeTour) 一覧
@@ -52,6 +60,8 @@ VS Code および **GitHub Codespaces** での学習に対応しており、環�
 | **`04c: OOP Basics`** | Step 4 (オブジェクト指向基礎) | クラス、インスタンス化（`new`）、プロパティとメモリ構造の基礎 |
 | **`05: Dependency Injection`** | Step 5 | インターフェースとサービスを用いた設計（疎結合化）と DI の実装 |
 | **`06: Unit Testing (xUnit)`** | Step 6 | xUnit による単体テスト、`[Fact]` と `[Theory]` の比較・使い分け、`dotnet test` |
+| **`07: Async and External API`** | Step 7 (非同期・API) | `async` / `await` の基本、`Task`、`HttpClient` による外貨換算と非同期処理 |
+| **`08: EF Core and SQLite`** | Step 8 (DB永続化) | Entity Framework Core、SQLite、DbContext、マイグレーション、非同期 CRUD |
 
 ---
 
@@ -99,7 +109,7 @@ VS Code および **GitHub Codespaces** での学習に対応しており、環�
       * **サクサク動かしたい方は「4コア」がおすすめ！**:
       標準（2コア）でも動作しますが、**4コア** にすると起動やプログラムの実行速度が大きく向上します。  
       ※コア数を増やすと、その分月間の無料枠の消費ペースが早くなる点だけご留意ください
-   - 数分待つと、ブラウザ上で VS Code 環境が立ち上がります（必要な環境は自動的に準備されます）。
+   - 数分待つと、ブラウザ上で VS Code環境が立ち上がります（必要な環境は自動的に準備されます）。
 
 2. **CodeTour を開始する**:
    - 起動完了後、画面左側のアクティビティバーにある「**エクスプローラー（Explorer）**」のアイコンをクリックします。

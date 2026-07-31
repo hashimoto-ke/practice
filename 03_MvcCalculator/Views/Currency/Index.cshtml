@@ -1,0 +1,81 @@
+@model _03_MvcCalculator.Models.CurrencyExchangeViewModel
+@{
+    ViewData["Title"] = "外貨換算（Step 7）";
+}
+
+<div class="container mt-5">
+    <h2>外貨換算（Step 7: 非同期処理体験）</h2>
+    <p class="text-muted">外部サービスから非同期で取得した為替レートを使って、円とドルを換算します。</p>
+
+    <form method="post" class="col-md-6">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        
+        <!-- 換算モードの選択 -->
+        <div class="mb-3">
+            <label class="form-label d-block">換算方向</label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="Mode" id="mode1" value="JpyToUsd" checked="@(Model.Mode == "JpyToUsd")">
+                <label class="form-check-label" for="mode1">日本円 → 米ドル</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="Mode" id="mode2" value="UsdToJpy" checked="@(Model.Mode == "UsdToJpy")">
+                <label class="form-check-label" for="mode2">米ドル → 日本円</label>
+            </div>
+        </div>
+
+        <!-- 共通の金額入力欄 -->
+        <div class="mb-3">
+            <label for="amount" class="form-label">金額</label>
+            <input type="number" name="InputAmount" id="amount" class="form-control" value="@Model.InputAmount" />
+            <span asp-validation-for="InputAmount" class="text-danger"></span>
+        </div>
+
+        <button type="submit" asp-action="Index" class="btn btn-success">
+            換算する (async / await)
+        </button>
+    </form>
+
+    @if (Model.Message != null)
+    {
+        <div class="alert alert-info mt-4">
+            <strong>結果:</strong> @Model.Message
+        </div>
+    }
+
+    <!-- ⚡ 同期 vs 非同期 (Task.WhenAll) パフォーマンス比較体験カード -->
+    <div class="card mt-5 border-primary">
+        <div class="card-header bg-primary text-white fw-bold">
+            ⚡ 圧倒的な差を実感！ 複数API取得のパフォーマンス比較 (同期 vs 非同期)
+        </div>
+        <div class="card-body">
+            <p class="card-text">
+                3つの外部API（USD, EUR, GBP レート取得：各1秒かかる処理）を一括で取得する場合の処理速度を比較できます。
+            </p>
+
+            <form method="post" class="d-flex gap-3 mb-4">
+                <button type="submit" asp-action="CompareSync" class="btn btn-outline-danger">
+                    1. 同期で順番に取得（順次実行）
+                </button>
+                <button type="submit" asp-action="CompareAsync" class="btn btn-success">
+                    2. 非同期で一括取得 (Task.WhenAll 並行実行)
+                </button>
+            </form>
+
+            @if (Model.MultipleRatesMessage != null)
+            {
+                <div class="alert @(Model.ExecutionTimeMs > 2000 ? "alert-warning" : "alert-success")">
+                    <h5>@Model.MultipleRatesMessage</h5>
+                    <hr />
+                    <p class="mb-0 fs-5 fw-bold">
+                        ⏱️ 総処理時間: <span class="badge @(Model.ExecutionTimeMs > 2000 ? "bg-danger" : "bg-success") fs-5">@(Model.ExecutionTimeMs / 1000.0) 秒 (@Model.ExecutionTimeMs ms)</span>
+                    </p>
+                    <small class="text-muted">
+                        @(Model.ExecutionTimeMs > 2000 
+                            ? "同期処理では 1秒 + 1秒 + 1秒 = 合計約 3秒 かかります。" 
+                            : "非同期 (Task.WhenAll) では 3つのAPI通信を同時に並行して行うため、わずか約 1秒 で完了します！")
+                    </small>
+                </div>
+            }
+        </div>
+    </div>
+</div>

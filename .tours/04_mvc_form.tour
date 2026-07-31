@@ -11,7 +11,7 @@
     {
       "file": "03_MvcCalculator/Views/Calculator/Index.cshtml",
       "pattern": "<form action=\"/Calculator/Calculate\" method=\"post\"",
-      "description": "これが数値を入力して送信するための HTML フォームです。\n`action=\"/Calculator/Calculate\"` により、送信先URLを指定しています。\n`method=\"post\"` により、HTTP POST リクエスト（サーバーにデータを送信する要求）でデータが送信されます。"
+      "description": "これが値を入力して送信するための HTML フォームです。\n`action=\"/Calculator/Calculate\"` により、送信先URLを指定しています。\n`method=\"post\"` により、HTTP POST リクエスト（サーバーにデータを送信する要求）でデータが送信されます。"
     },
     {
       "file": "03_MvcCalculator/Views/Calculator/Index.cshtml",
