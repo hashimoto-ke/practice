@@ -1,14 +1,23 @@
-name: Build Graphify Knowledge Graph
+name: Build and Deploy Graphify Knowledge Graph
 
 on:
   push:
     branches: [ dev ]
 
+# GitHub Pages デプロイに必要なパーミッションを追加
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+# 同時デプロイの衝突を防ぐ設定
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
-  build-graph:
+  build-and-commit:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write # 変更をリポジトリにプッシュするために必要
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -29,6 +38,12 @@ jobs:
         run: |
           graphify update . || graphify .
 
+      # root URL (https://<user>.github.io/<repo>/) で直接グラフを開けるように index.html として複製
+      - name: Prepare HTML for Pages
+        run: |
+          cp graphify-out/graph.html graphify-out/index.html
+
+      # リポジトリへ成果物をコミット＆プッシュ
       - name: Commit and Push Graph
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -40,3 +55,20 @@ jobs:
             git commit -m "chore: update graphify knowledge graph [skip ci]"
             git push origin dev
           fi
+
+      # GitHub Pages 用の成果物をアップロード
+      - name: Upload artifact for Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'graphify-out'
+
+  deploy-pages:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build-and-commit
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
