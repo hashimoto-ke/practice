@@ -1,0 +1,35 @@
+{
+  "title": "08b: LINQ Basics",
+  "steps": [
+    {
+      "file": "03_MvcCalculator/Controllers/LinqController.cs",
+      "line": 1,
+      "description": "**Step 8b: LINQ 基礎へようこそ！**\n\nアプリを作っていると、「たくさんのデータの中から、条件に合うものだけを取り出したい」「大きい順に並び替えたい」「合計や平均を計算したい」という場面がたくさんあります。\n\nC# には、こういったデータの **検索・絞り込み・並び替え・集計** を、誰でも簡単にスッキリ書けるようにする「**LINQ（リンク）**」という非常に強力で便利な機能が備わっています。\n\n本ツアーでは、LINQ の基本となる書き方をマスターしていきましょう！"
+    },
+    {
+      "file": "03_MvcCalculator/Controllers/LinqController.cs",
+      "pattern": " .Where\\(h => h.Result > 0\\)",
+      "description": "**1. 条件抽出 (`Where`) とラムダ式**\n\n条件に合うデータだけを絞り込むには `.Where(...)` を使用します。\n\n💡 **ラムダ式 (`h => ...`) のポイント**\n- `=>` の左側にある `h` は、リスト内の「**各要素**」を受け取る変数（パラメータ）です。\n- `=>` の右側は「**条件式（True/False）**」を書きます。"
+    },
+    {
+      "file": "03_MvcCalculator/Controllers/LinqController.cs",
+      "pattern": " .OrderByDescending\\(x => x.Result\\)",
+      "description": "**2. 並び替え (`OrderBy` / `OrderByDescending`)**\n\nデータの順序を並び替えるメソッドです：\n- `OrderBy(x => x.Result)`: **昇順**（小さい順、A→Z）\n- `OrderByDescending(x => x.Result)`: **降順**（大きい順、Z→A）"
+    },
+    {
+      "file": "03_MvcCalculator/Controllers/LinqController.cs",
+      "pattern": " decimal min = count > 0",
+      "description": "**3. 集計メソッド (`Count`, `Sum`, `Average`, `Max`, `Min`)**\n\n統計や計算を一瞬で行える集計メソッドです：\n- `list.Count`: 全件数を取得\n- `list.Sum(item => item.Result)`: 合計値を計算\n- `list.Average(item => item.Result)`: 平均値を計算\n- `list.Max(item => item.Result)`: 最大値を取得\n- `list.Min(item => item.Result)`: 最小値を取得\n\nこれらを組み合わせることで、複雑な集計もスマートに記述できます。"
+    },
+    {
+      "file": "03_MvcCalculator/Controllers/LinqController.cs",
+      "pattern": "public async Task<IActionResult> HandsOn",
+      "description": "TODO: ハンズオン課題です！\n\n`HandsOn()` メソッド内のTODOコメントの条件を満たすようにLINQクエリを実装してください。"
+    },
+    {
+      "file": "03_MvcCalculator/Views/Linq/Index.cshtml",
+      "line": 1,
+      "description": "**画面での動作確認**\n\nターミナルで `cd 03_MvcCalculator` に移動し、`dotnet run` を実行してください。\n\nブラウザでナビゲーションメニューの「**LINQ 基礎**」を開き、各ボタン（全件表示、Where、OrderBy、集計、ハンズオン課題）をクリックして、LINQ の実行結果が画面にどのように反映されるか確認してみましょう！"
+    }
+  ]
+}
