@@ -41,6 +41,10 @@ VS Code および **GitHub Codespaces** での学習に対応しており、環�
 - **学ぶこと**: ORM (Object-Relational Mapping) と Entity Framework Core の仕組み、Entity クラス設計と主キー、`DbContext`、SQLite データベース接続設定、マイグレーション、非同期 CRUD 操作 (`ToListAsync`, `AddAsync`, `SaveChangesAsync`, `Remove`)。
 - **ハンズオン**: 全件削除アクション（`DeleteAll` / `ExecuteDeleteAsync`）の実装。
 
+### 📂 8b. `03_MvcCalculator` (Step 8b: LINQ 基礎編)
+- **学ぶこと**: LINQ (Language Integrated Query) の概念、ラムダ式の記法、データの抽出 (`Where`)、並び替え (`OrderBy` / `OrderByDescending`)、集計 (`Count`, `Sum`, `Average`, `Max`, `Min`)。
+- **ハンズオン**: 条件に合う履歴データを抽出して並び替える LINQ クエリの実装。
+
 ---
 
 ## 🗺️ コードツアー (CodeTour) 一覧
@@ -62,6 +66,7 @@ VS Code および **GitHub Codespaces** での学習に対応しており、環�
 | **`06: Unit Testing (xUnit)`** | Step 6 | xUnit による単体テスト、`[Fact]` と `[Theory]` の比較・使い分け、`dotnet test` |
 | **`07: Async and External API`** | Step 7 (非同期・API) | `async` / `await` の基本、`Task`、`HttpClient` による外貨換算と非同期処理 |
 | **`08: EF Core and SQLite`** | Step 8 (DB永続化) | Entity Framework Core、SQLite、DbContext、マイグレーション、非同期 CRUD |
+| **`08b: LINQ Basics`** | Step 8b (クエリ基礎) | LINQ、ラムダ式、`Where`、`OrderBy`、集計 (`Sum`, `Average`, `Max`) |
 
 ---
 

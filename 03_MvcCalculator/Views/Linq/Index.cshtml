@@ -1,0 +1,120 @@
+@model _03_MvcCalculator.Models.LinqDemoViewModel
+@{
+    ViewData["Title"] = "LINQ 基礎（Step 8b）";
+}
+
+<div class="container mt-4">
+    <h2>🔍 LINQ 基礎（Step 8b: コレクション操作とクエリ）</h2>
+    <p class="text-muted">
+        C# の LINQ (Language Integrated Query) を使って、データの抽出・並び替え・集計を行う方法を学びます。
+    </p>
+
+    <!-- 操作切り替えボタン -->
+    <div class="card mb-4">
+        <div class="card-header bg-light fw-bold">
+            実行する LINQ クエリを選択
+        </div>
+        <div class="card-body">
+            <div class="d-flex flex-wrap gap-2">
+                <a asp-action="Index" class="btn @(Model.CurrentMode == "All" ? "btn-primary" : "btn-outline-primary")">
+                    全件表示 (元のデータ)
+                </a>
+                <a asp-action="WhereDemo" class="btn @(Model.CurrentMode == "Where" ? "btn-success" : "btn-outline-success")">
+                    1. 抽出 (Where: プラスのみ)
+                </a>
+                <a asp-action="OrderByDemo" class="btn @(Model.CurrentMode == "OrderBy" ? "btn-info" : "btn-outline-info")">
+                    2. 並び替え (OrderByDescending)
+                </a>
+                <a asp-action="AggregateDemo" class="btn @(Model.CurrentMode == "Aggregate" ? "btn-warning" : "btn-outline-warning")">
+                    3. 集計 (Sum / Average / Max)
+                </a>
+                <a asp-action="HandsOn" class="btn @(Model.CurrentMode == "HandsOn" ? "btn-danger" : "btn-outline-danger")">
+                    4. 【ハンズオン課題】100以上を抽出
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 実行結果カード -->
+    <div class="card mb-4 border-info">
+        <div class="card-header bg-info text-white fw-bold">
+            📌 現在のクエリ: @Model.QueryTitle
+        </div>
+        <div class="card-body">
+            <pre class="bg-dark text-light p-3 rounded mb-3"><code>@Model.QueryDescription</code></pre>
+
+            @if (Model.CurrentMode == "Aggregate" || Model.SumResult.HasValue)
+            {
+                <div class="row g-3 mb-3">
+                    <div class="col-md-3">
+                        <div class="border rounded p-3 bg-light text-center">
+                            <small class="text-muted d-block">件数 (Count)</small>
+                            <span class="fs-4 fw-bold">@Model.TotalCount 件</span>
+                        </div>
+                    </div>
+                    @if (Model.SumResult.HasValue)
+                    {
+                        <div class="col-md-3">
+                            <div class="border rounded p-3 bg-light text-center">
+                                <small class="text-muted d-block">合計 (Sum)</small>
+                                <span class="fs-4 fw-bold text-primary">@Model.SumResult</span>
+                            </div>
+                        </div>
+                    }
+                    @if (Model.AverageResult.HasValue)
+                    {
+                        <div class="col-md-3">
+                            <div class="border rounded p-3 bg-light text-center">
+                                <small class="text-muted d-block">平均 (Average)</small>
+                                <span class="fs-4 fw-bold text-success">@Model.AverageResult</span>
+                            </div>
+                        </div>
+                    }
+                    @if (Model.MaxResult.HasValue)
+                    {
+                        <div class="col-md-3">
+                            <div class="border rounded p-3 bg-light text-center">
+                                <small class="text-muted d-block">最大 / 最小 (Max / Min)</small>
+                                <span class="fs-5 fw-bold text-danger">Max: @Model.MaxResult / Min: @Model.MinResult</span>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+
+            <h5 class="mt-4">データ一覧 (@Model.FilteredHistories.Count 件)</h5>
+            @if (!Model.FilteredHistories.Any())
+            {
+                <div class="alert alert-warning">該当するデータはありません。</div>
+            }
+            else
+            {
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>計算式 (Expression)</th>
+                            <th>計算結果 (Result)</th>
+                            <th>記録日時 (CreatedAt)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.FilteredHistories)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.Expression</td>
+                                <td>
+                                    <span class="badge @(item.Result > 0 ? "bg-success" : "bg-secondary") fs-6">
+                                        @item.Result
+                                    </span>
+                                </td>
+                                <td>@item.CreatedAt.ToString("yyyy/MM/dd HH:mm:ss")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+</div>
